@@ -75,5 +75,8 @@ jobs:
     needs: test-coverage
 
     steps:
+      - name: Checking out github project
+        uses: actions/checkout@v3
+
       - name: merge
         run: echo "able to merge"
