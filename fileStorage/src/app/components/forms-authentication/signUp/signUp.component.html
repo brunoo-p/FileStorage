@@ -1,0 +1,32 @@
+<aside>
+  <label for="signIn" class="title"> Sign up </label>
+  <label for="signUp" class="subtitle" (click)="changeForm()">
+    sign In
+  </label>
+</aside>
+
+<form [formGroup]="register">
+  <div>
+    <label for="email"> Email </label>
+    <app-input-text [formGroup]="register" controlName="email" placeholder="email@email.com"></app-input-text>
+  </div>
+
+  <div>
+    <label for="password"> Password </label>
+    <app-input-password [formGroup]="register" controlName="password"></app-input-password>
+  </div>
+
+  <div>
+    <label for="password"> Confirm Password </label>
+    <app-input-password [formGroup]="register" controlName="confirmPassword"></app-input-password>
+  </div>
+
+  <div>
+    <label for="cpf"> CPF </label>
+    <app-input-text [formGroup]="register" controlName="cpf" placeholder="000.000.000-00"></app-input-text>
+  </div>
+
+  <div class="submit">
+    <button type="submit" name="signIn" (click)="handleRegister()"> Sign up</button>
+  </div>
+</form>

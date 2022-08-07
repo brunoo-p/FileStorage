@@ -1,0 +1,13 @@
+<div [formGroup]="formGroup">
+  <input type="text" [formControlName]="controlName" [placeholder]="placeholder" [required]="required">
+  <div *ngIf="(formControl.dirty || formControl.touched) && formControl.errors" class="alert">
+
+    <span *ngIf="formControl.errors?.['required']">
+      {{ controlName }} is required.
+    </span>
+    <span *ngIf="formControl.errors?.['email']">
+      type a valid email address.
+    </span>
+
+  </div>
+</div>
