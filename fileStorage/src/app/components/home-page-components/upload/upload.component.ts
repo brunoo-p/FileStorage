@@ -1,3 +1,4 @@
+import { FileService } from './../../../services/domain/file/file.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from "@angular/core";
 
@@ -61,7 +62,7 @@ export class UploadComponent {
   submitFile(event: any) {
     event.preventDefault();
     this.files.controls['keywords'].setValue(this.keywords);
-    this.files.controls['file'].setValue(this.currentFile.file);
+    this.files.controls['file'].setValue(this.currentFile);
     console.log(this.files.value);
 
     this.files.reset();

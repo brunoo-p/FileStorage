@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     FormsAuthenticationComponent,
     UploadComponent,
     ModalComponent,
+    HttpClientModule,
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     SignInComponent,
     UploadComponent,
     ModalComponent,
-  ]
+  ],
 })
 export class ComponentsModule { }
