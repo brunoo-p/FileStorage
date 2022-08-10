@@ -1,0 +1,26 @@
+input {
+  margin: .3em 0 1em 0;
+}
+input {
+  border-radius: 8px;
+  padding: 10px;
+  outline: none;
+  border: 1px solid var(--primary-color);
+  font-size: 16px;
+}
+.input-error {
+  border: 1px solid red;
+}
+.alert {
+  font-size: 11px;
+  color: red;
+  padding: 5px;
+  transform: translateY(-15px);
+  height: 5px;
+  animation: .2s showError ease-in forwards;
+}
+@keyframes showError {
+  from {transform: translateY(-20px); opacity: 0}
+  to {transform: translateY(-15px); opacity: 1}
+}
+

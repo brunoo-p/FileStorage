@@ -1,0 +1,33 @@
+<aside>
+  <label for="signIn" class="title"> Sign in </label>
+  <label for="signUp" class="subtitle" (click)="changeForm()">
+    or create an account
+  </label>
+</aside>
+
+<form [formGroup]="login">
+  <div>
+    <label for="email"> Email </label>
+    <app-input-text [formGroup]="login" controlName="email" placeholder="email@email.com"></app-input-text>
+  </div>
+  <div>
+    <label for="password"> Password </label>
+    <app-input-password [formGroup]="login" controlName="password"></app-input-password>
+  </div>
+
+  <span class="checkbox">
+    <input type="checkbox" formControlName="keepConnected" *ngIf="!login.get('keepConnected')!.value; else keepConnectedActive">
+
+    <ng-template #keepConnectedActive>
+      <button type="button" class="checkIcon" (click)="keepConnected()">
+        <img src="assets/icons/check.svg" alt="checked">
+      </button>
+    </ng-template>
+
+    Keep Connected
+  </span>
+
+  <div class="submit">
+    <button type="submit" name="signIn" (click)="submitLogin()"> Sign In</button>
+  </div>
+</form>

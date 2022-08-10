@@ -1,3 +1,4 @@
+import { SignInComponent } from './components/forms-authentication/signIn/signIn.component';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
@@ -10,11 +11,14 @@ const routes: Routes = [
   {
     path: '',
     component: HomePageComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
-    path: 'login',
+    path: '',
     component: AuthenticationPageComponent,
+    children: [
+      { path: 'login', component: SignInComponent }
+    ]
   },
 
 

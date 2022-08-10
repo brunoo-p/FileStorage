@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="content">
+
+    <div class="forms">
+
+      <div class="contentForms" >
+        <div *ngIf="showLogin; else registerForm">
+
+          <app-signIn
+            (setFormToShow)="changeForm($event)"
+            (eventSubmitLogin)="submitLogin($event)"
+          ></app-signIn>
+
+        </div>
+
+        <ng-template #registerForm>
+
+          <app-signUp
+            (setFormToShow)="changeForm($event)"
+            (eventSubmitRegister)="submitRegister($event)"
+            ></app-signUp>
+
+        </ng-template>
+      </div>
+
+    </div>
+
+  </div>
+</div>
