@@ -1,6 +1,14 @@
-import { FormType, KeyForm, Login } from './types';
-import { Component, OnChanges, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component,} from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
+import { FormsAuthenticationFacade } from './forms-authentication.facade';
+
+import { LoginRequest } from './../../services/domain/auth/loginRequest';
+import { Email } from './../../services/domain/auth/credential/email';
+import { Password } from './../../services/domain/auth/credential/password';
+
+import { FormType, KeyForm } from './types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forms-authentication',
@@ -12,17 +20,31 @@ export class FormsAuthenticationComponent {
   private showForm: KeyForm = FormType.SignIn;
   showLogin = this.showForm === FormType.SignIn;
 
+  constructor(private formsFacade: FormsAuthenticationFacade, private router: Router) {
+
+  }
+
   changeForm(form: KeyForm): void {
     this.showForm = FormType[form];
     this.showLogin = this.showForm === FormType.SignIn;
   }
 
-  submitLogin(login: FormGroup): void {
-    alert(JSON.stringify(login.value, null, 2));
+  async submitLogin(login: FormGroup) {
+
+    if(login.valid) {
+      const createLogin = new LoginRequest(
+        new Email(login.controls['email'].value),
+        new Password(login.controls['password'].value)
+      );
+
+      await this.formsFacade.instance().signIn(createLogin);
+      this.router.navigate(['']);
+    }
   }
 
   submitRegister(register: FormGroup): void {
     alert(JSON.stringify(register.value, null, 2));
 
   }
+
 }

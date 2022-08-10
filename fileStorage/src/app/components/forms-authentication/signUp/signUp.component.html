@@ -7,6 +7,16 @@
 
 <form [formGroup]="register">
   <div>
+    <label for="email"> First Name </label>
+    <app-input-text [formGroup]="register" controlName="firstName" placeholder="John"></app-input-text>
+  </div>
+
+  <div>
+    <label for="email"> Last Name </label>
+    <app-input-text [formGroup]="register" controlName="lastName" placeholder="Doe"></app-input-text>
+  </div>
+
+  <div>
     <label for="email"> Email </label>
     <app-input-text [formGroup]="register" controlName="email" placeholder="email@email.com"></app-input-text>
   </div>
@@ -19,6 +29,11 @@
   <div>
     <label for="password"> Confirm Password </label>
     <app-input-password [formGroup]="register" controlName="confirmPassword"></app-input-password>
+  </div>
+
+  <div>
+    <label for="email"> Phone </label>
+    <app-input-text [formGroup]="register" controlName="phone" placeholder="(00) 90000-0000"></app-input-text>
   </div>
 
   <div>
