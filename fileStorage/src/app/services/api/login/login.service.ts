@@ -32,11 +32,11 @@ export class LoginService {
 
   private async signIn(api: HttpClient, login: LoginRequest): Promise<any>{
 
-    const url = `${this._baseUrl}/login`;
+    const url = `${this._baseUrl}/auth/signIn`;
     const callApi = () => api
       .post<LoginRequest>(
         url,
-        JSON.stringify(login),
+        {email: login.email.value, password: login.password.value},
         { observe: 'response' }
       );
     return await this.apiCallerService.caller(callApi, undefined, HttpStatusCode.OK);
@@ -45,7 +45,7 @@ export class LoginService {
 
   private async signUp(api: HttpClient, register: RegisterRequest): Promise<any> {
 
-    const url = `${this._baseUrl}/register`;
+    const url = `${this._baseUrl}/auth/signUp`;
     const callApi = () => api
       .post<RegisterRequest>(
         url,
