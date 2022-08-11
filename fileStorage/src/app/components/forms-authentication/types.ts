@@ -4,11 +4,11 @@ export enum FormType {
 }
 export type KeyForm = keyof typeof FormType;
 
-export type Login = {
+export type LoginType = {
   email: string,
   password: string
 }
-export type Register = {
+export type RegisterType = {
   firstName: string,
   lastName: string,
   email: string,

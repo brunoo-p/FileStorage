@@ -1,6 +1,6 @@
 export class FileMetadata {
   constructor(
     public type: string,
-    public extension: string,
+    // public extension: string,
   ) {}
 }

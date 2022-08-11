@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs';
 import { UserProfile } from './../../domain/common/userProfile';
 import { Injectable } from "@angular/core";
 
@@ -5,17 +6,15 @@ import { Injectable } from "@angular/core";
   providedIn: 'root'
 })
 export class ContextAuthService {
-  private user!: any | null;
+  private user$ = new BehaviorSubject<any>(null);
 
   constructor() {
-    this.user = null;
   }
 
   get userProfile(): any | null {
-    return this.user;
+    return this.user$.asObservable();
   }
   set userProfile(value: any | null) {
-    this.user = value;
-    localStorage.setItem('@Token', JSON.stringify(this.user));
+    this.user$.next(value);
   }
 }

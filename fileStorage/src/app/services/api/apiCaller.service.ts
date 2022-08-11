@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpEvent, HttpResponse } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
 
 import { HttpStatusCode } from './http/httpType';
 import { ApiRequestValidator } from './validation/apiRequestValidator';
@@ -10,18 +11,20 @@ import { Observable } from "rxjs";
 })
 export class ApiCallerService {
 
+
   async caller<T>(
-    // callApi: () => Promise<HttpResponse<T>>,
-    callApi: () => Observable<any>,
+    callApi: () => Observable<HttpResponse<T>>,
     mapper?: (payload: any, header?: any) => T,
     expectedStatusCode?: HttpStatusCode
   ): Promise<T> {
     try {
-      const response: any = await callApi();
+      let response: any = callApi();
+      response = await lastValueFrom(response);
+
       ApiRequestValidator.checkStatus(response, expectedStatusCode);
 
       if(mapper) {
-        return mapper(response.data);
+        return mapper(response.body);
       }
 
       return response;

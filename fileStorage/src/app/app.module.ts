@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { httpInterceptorProviders } from './services/domain/auth/interceptors/index';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ComponentsModule } from './components/components.module';
 import { AuthenticationPageComponent } from './pages/authentication-page/authentication-page.component';
@@ -27,6 +28,9 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     ComponentsModule,
     BrowserAnimationsModule,
+  ],
+  providers: [
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent],
 })

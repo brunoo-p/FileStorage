@@ -1,29 +1,23 @@
+import { Contact } from './../auth/credential/contact';
 import { Email } from "../auth/credential/email";
-import { Password } from "../auth/credential/password";
 
 export class UserProfile {
   public firstName: string;
   public lastName: string;
   public email: Email;
-  public password: Password;
-  public phone: string;
-  public cpf: string;
+  public contact: Contact;
 
   constructor(
     firstName: string,
     lastName: string,
     email: Email,
-    password: Password,
-    phone: string,
-    cpf: string
+    contact: Contact,
   ) {
 
     this.firstName = firstName,
     this.lastName = lastName,
     this.email = email,
-    this.password = password,
-    this.phone = phone,
-    this.cpf = cpf
+    this.contact = contact
   }
 
 }
