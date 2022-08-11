@@ -1,3 +1,5 @@
+import { FileType } from './types';
+import { UploadFacadeService } from './facade/upload.facade';
 import { FileService } from './../../../services/domain/file/file.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from "@angular/core";
@@ -17,7 +19,10 @@ export class UploadComponent {
 
   showModal: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private uploadFacadeService: UploadFacadeService
+  ) {
 
     this.files = this.formBuilder.group({
       name: ['', Validators.required],
@@ -31,7 +36,7 @@ export class UploadComponent {
   createUrlPreview(file: File) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = (event: any) => { this.currentFile = { file: (<FileReader>event.target).result, type: file.type } }
+    reader.onload = (event: any) => { this.currentFile = { file: file, base64: (<FileReader>event.target).result, type: file.type } }
   }
   uploadFile(event: any) {
     const filesUploaded: File = event.target.files[0];
@@ -59,14 +64,18 @@ export class UploadComponent {
     this.keywords.delete(keyword);
   }
 
-  submitFile(event: any) {
-    event.preventDefault();
-    this.files.controls['keywords'].setValue(this.keywords);
-    this.files.controls['file'].setValue(this.currentFile);
-    console.log(this.files.value);
+  async submitFile() {
 
-    this.files.reset();
-    this.keywords.clear();
-    this.closeModal();
+    if (this.files.valid) {
+
+      this.files.controls['keywords'].setValue(this.keywords);
+      this.files.controls['file'].setValue(this.currentFile);
+      console.log(this.files.value);
+
+      await this.uploadFacadeService.instance().save(this.files.value as unknown as FileType);
+      // this.files.reset();
+      // this.keywords.clear();
+      // this.closeModal();
+    }
   }
 }

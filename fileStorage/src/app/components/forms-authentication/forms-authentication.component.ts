@@ -1,11 +1,7 @@
 import { Component,} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { FormsAuthenticationFacade } from './forms-authentication.facade';
-
-import { LoginRequest } from './../../services/domain/auth/loginRequest';
-import { Email } from './../../services/domain/auth/credential/email';
-import { Password } from './../../services/domain/auth/credential/password';
+import { FormsAuthenticationFacade } from './facade/forms-authentication.facade';
 
 import { FormType, KeyForm } from './types';
 import { Router } from '@angular/router';
@@ -20,7 +16,10 @@ export class FormsAuthenticationComponent {
   private showForm: KeyForm = FormType.SignIn;
   showLogin = this.showForm === FormType.SignIn;
 
-  constructor(private formsFacade: FormsAuthenticationFacade, private router: Router) {
+  constructor(
+    private formsFacade: FormsAuthenticationFacade,
+    private router: Router
+  ) {
 
   }
 
@@ -29,21 +28,25 @@ export class FormsAuthenticationComponent {
     this.showLogin = this.showForm === FormType.SignIn;
   }
 
-  async submitLogin(login: FormGroup) {
+  async submitLogin(login: FormGroup): Promise<void> {
 
     if(login.valid) {
-      const createLogin = new LoginRequest(
-        new Email(login.controls['email'].value),
-        new Password(login.controls['password'].value)
-      );
 
-      await this.formsFacade.instance().signIn(createLogin);
+      const keepConnected = login.controls['keepConnected'].value;
+      await this.formsFacade.instance().signIn(login.value, keepConnected);
+
       this.router.navigate(['']);
     }
   }
 
-  submitRegister(register: FormGroup): void {
-    alert(JSON.stringify(register.value, null, 2));
+  async submitRegister(register: FormGroup): Promise<void> {
+    if (register.valid) {
+
+      await this.formsFacade.instance().signUp(register.value);
+
+      this.router.navigate(['']);
+
+    }
 
   }
 

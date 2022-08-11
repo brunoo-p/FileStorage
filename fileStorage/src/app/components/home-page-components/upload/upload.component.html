@@ -10,9 +10,9 @@
 
           <section class="previewImage" [ngStyle]="{'width': toggleBtn.checked ? '100%' : '0%' }">
 
-            <img [src]="currentFile.file" class="image" alt="sorry, we can't show the preview" *ngIf="currentFile?.type?.includes('image')">
+            <img [src]="currentFile.base64" class="image" alt="sorry, we can't show the preview" *ngIf="currentFile?.type?.includes('image')">
 
-            <pdf-viewer class="pdfPreview" [src]="currentFile?.file"
+            <pdf-viewer class="pdfPreview" [src]="currentFile.base64"
               [render-text]="true"
               [original-size]="false"
               style="width: 95%; height: 100%"
@@ -22,6 +22,7 @@
             <label for="file" class="iconEdit" [ngStyle]="{ opacity: toggleBtn.checked ? '1' : '0'}"> <img src="/assets/icons/edit.png" alt="edit"> </label>
 
           </section>
+
           <section class="metadata">
 
             <label>Show File Preview</label>
@@ -73,7 +74,7 @@
 
               <div class="submit">
                 <button type="submit" (click)="closeModal()"> Cancel </button>
-                <button type="submit" (click)="submitFile($event)"> Save File</button>
+                <button type="submit" (click)="submitFile()"> Save File</button>
               </div>
             </form>
 

@@ -1,9 +1,12 @@
+import { Observable, lastValueFrom } from 'rxjs';
 import { HttpStatusCode } from '../http/httpType';
 
 export class ApiRequestValidator {
 
-  private static checkForStatus(response: any, expectedStatusCode: HttpStatusCode ): void {
+  private static async checkForStatus(response: any, expectedStatusCode: HttpStatusCode ): Promise<void> {
+
     const responseStatusCode = response.status;
+
     if (responseStatusCode === expectedStatusCode) {
       return;
     };

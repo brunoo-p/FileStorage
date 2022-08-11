@@ -44,9 +44,7 @@ input[type="file"] {
   border-radius: 10px;
   justify-content: center;
 }
-.showImagePreview {
-  grid-template-columns: 50% 50%;
-}
+
 .previewImage {
   width: 0%;
   display: flex;

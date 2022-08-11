@@ -1,13 +1,12 @@
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { MaterialAngularModule } from './material-angular/material-angular.module';
+import { FieldsModule } from './fields/fields.module';
 
 import { UploadComponent } from './home-page-components/upload/upload.component';
-import { FieldsModule } from './fields/fields.module';
 import { SignUpComponent } from './forms-authentication/signUp/signUp.component';
 import { FormsAuthenticationComponent } from './forms-authentication/forms-authentication.component';
 import { SignInComponent } from './forms-authentication/signIn/signIn.component';
@@ -20,7 +19,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     FormsAuthenticationComponent,
     UploadComponent,
     ModalComponent,
-    HttpClientModule,
   ],
   imports: [
     CommonModule,

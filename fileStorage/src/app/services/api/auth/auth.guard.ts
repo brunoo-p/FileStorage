@@ -1,3 +1,4 @@
+import { StorageManagerService } from './../../domain/utils/storage/storageManager.service';
 import { ContextAuthService } from './../context/contextAuth.service';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
@@ -7,14 +8,22 @@ import { CanActivate, Router } from '@angular/router';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, private contextAuthService: ContextAuthService) { }
+  private user: any;
+  constructor(
+    private router: Router,
+    private contextAuthService: ContextAuthService,
+    private storageManager: StorageManagerService
+  ) {
+    this.contextAuthService.userProfile
+      .subscribe((content: any) => this.user = content);
+  }
 
   canActivate(): boolean {
 
-    const user = this.contextAuthService.userProfile;
-    const token = localStorage.getItem('@Token');
-    if (user !== null) {
-      console.log(true);
+    this.contextAuthService.userProfile;
+    const token = this.storageManager.getItem('@Fs:user');
+
+    if (this.user !== null || token) {
       return true;
     }
 
