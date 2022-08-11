@@ -27,6 +27,7 @@ export class FormsAuthenticationFacade {
   private setKeepConnected(data: any) {
     this.storageManager.setItem('@Fs:user', data);
   }
+
   private async signIn(login: LoginType, keepConnected: boolean): Promise<void> {
 
     const createLogin = new LoginRequest(
@@ -35,7 +36,7 @@ export class FormsAuthenticationFacade {
     );
 
     const response: HttpResponse<any> = await this.loginService.instance().signIn(createLogin);
-
+    console.log('form facade', response);
     if(response.ok && keepConnected) {
       this.setKeepConnected(login);
     }
@@ -52,7 +53,6 @@ export class FormsAuthenticationFacade {
     );
 
     const response: HttpResponse<any> = await this.loginService.instance().signUp(createRegister);
-    console.log('form facade', response);
   }
 
 

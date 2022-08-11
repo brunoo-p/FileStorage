@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "AcG7ObirMipKQDxA/Q6oZjh213KtXjEBdkNaJhN3u4slG0P3ztaVUAyHhdeQg6A6kz536jkmBgCcjHIAOriFVw==",
+  "dgSpecHash": "oG920wO8X5PwLEGhiyP0JZmr564jzJ3hgx2QmV1sIVz65HIPkDAgtN+Uf+ecWUhW3vPDpUto+RtDjJmbSWp99Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\bruno\\OneDrive\\Área de Trabalho\\FileStorage\\storage\\fileStorage.backend\\backend\\Domain\\Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\bruno\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\bruno\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\bruno\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
