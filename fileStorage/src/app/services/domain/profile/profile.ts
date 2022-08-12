@@ -1,6 +1,5 @@
-import { Email } from '../auth/credential/email';
-import { CPF } from '../auth/credential/cpf';
-
+import { CPF } from './../auth/credential/cpf';
+import { Email } from './../auth/credential/email';
 export class Profile {
   public id: string;
   public firstName: string;
@@ -22,7 +21,6 @@ export class Profile {
     this.lastName = lastName;
     this.email = email;
     this.cpf = cpf;
-    this.isActive = isActive
+    this.isActive = isActive;
   }
-
 }

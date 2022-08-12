@@ -1,3 +1,4 @@
+import { MapperFileService } from './mappers/mapper-file.service';
 import { IFileService } from './../../interfaces/IFileService';
 import { HttpStatusCode } from './../../api/http/httpType';
 import { ApiCallerService } from './../../api/apiCaller.service';
@@ -18,39 +19,40 @@ export class FileService {
 
   constructor(
     private httpClient: HttpClient,
+    private mapperFileService: MapperFileService,
     private apiCallerService: ApiCallerService
   ) {
 
     this.api = this.httpClient;
 
   }
-  private async saveFile(api: HttpClient, profileId: string, file: FileRequest): Promise<any> {
-    console.log(profileId, file);
-    const url = `${this.baseUrl}/document/${profileId}`
+  private async saveFile(api: HttpClient, file: FormData): Promise<any> {
+    const url = `${this.baseUrl}/document/${file.get("profileId")}`
     const callApi = () => api
-      .post<FileRequest>(
+      .post<FormData>(
         url,
         file,
         { observe: 'response'}
       );
 
-    return await this.apiCallerService.caller(callApi, undefined, HttpStatusCode.CREATED);
+    return await this.apiCallerService.caller(callApi, this.mapperFileService.fromObject, HttpStatusCode.CREATED);
 
   }
 
-  private async listAll(api: HttpClient): Promise<any> {
+  private async listAll(api: HttpClient, profileId: string): Promise<any> {
+    const url = `${this.baseUrl}/document/${profileId}`;
     const callApi = () => api
       .get<any>(
-        this.baseUrl,
+        url,
         { observe: 'response' }
       )
 
-      return await this.apiCallerService.caller(callApi, undefined, HttpStatusCode.OK);
+      return await this.apiCallerService.caller(callApi, this.mapperFileService.fromArray, HttpStatusCode.OK);
   };
 
 
   instance = (): IFileService => ({
-    save: (profileId: string, file: FileRequest) => this.saveFile(this.api, profileId, file),
-    listAll: () => this.listAll(this.api)
+    save: (file: FormData) => this.saveFile(this.api, file),
+    listAll: (profileId: string) => this.listAll(this.api, profileId)
   })
 }

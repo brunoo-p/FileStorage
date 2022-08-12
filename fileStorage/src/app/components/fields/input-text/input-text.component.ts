@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 import { Component, Input } from "@angular/core";
 
 @Component({
@@ -7,7 +7,7 @@ import { Component, Input } from "@angular/core";
   styleUrls: ['../styles.css']
 })
 export class InputTextComponent {
-  @Input() formGroup!: FormGroup;
+  @Input() formGroup!: UntypedFormGroup;
   @Input() controlName!: string;
   @Input() placeholder!: string;
   @Input() required: boolean = true;

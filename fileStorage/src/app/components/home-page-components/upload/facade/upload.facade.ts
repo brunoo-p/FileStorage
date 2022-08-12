@@ -20,27 +20,29 @@ export class UploadFacadeService {
   ) {}
 
   private async save(file: FileType): Promise<void> {
-    const { name, description, keywords, file: content} = file;
+    const { name, description, keywords, metadata, content} = file;
 
+    const profileId = '62f5c08aea7ab48433fd5685';
     const newFile = new FileRequest(
+      profileId,
       new FileName(name),
       description,
       keywords,
-      content.file,
-      new FileMetadata( content.type),
+      content,
+      new FileMetadata(metadata.type),
     )
-    let profileId = '62f5c08aea7ab48433fd5685';
 
-    const response = await this.fileService.instance().save(profileId, newFile);
-    console.log('response', response);
+    const data: FormData = newFile.mapFormData();
+    const response = await this.fileService.instance().save(data);
   }
 
   private async listAll(): Promise<any> {
-    await this.fileService.instance().listAll();
+    const profileId = '62f5c08aea7ab48433fd5685';
+    const response = await this.fileService.instance().listAll(profileId);
+    console.log(response);
   }
   private edit(id: string, update: Omit<FileType, 'file'>): any {
     console.log(id, update);
-    // await this.fileService
 
   }
 

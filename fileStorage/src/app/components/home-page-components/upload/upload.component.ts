@@ -1,7 +1,7 @@
 import { FileType } from './types';
 import { UploadFacadeService } from './facade/upload.facade';
 import { FileService } from './../../../services/domain/file/file.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Component } from "@angular/core";
 
 @Component({
@@ -11,7 +11,7 @@ import { Component } from "@angular/core";
 })
 export class UploadComponent {
 
-  files: FormGroup;
+  files: UntypedFormGroup;
   currentFile: any;
 
   keywords: Set<string> = new Set([]);
@@ -20,23 +20,26 @@ export class UploadComponent {
   showModal: boolean = false;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private uploadFacadeService: UploadFacadeService
   ) {
 
     this.files = this.formBuilder.group({
       name: ['', Validators.required],
       description: [''],
-      file: [null],
-      keywords: [['']]
+      keywords: [['']],
+      content: [null],
+      metadata: ['', Validators.required]
     });
   }
-
 
   createUrlPreview(file: File) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = (event: any) => { this.currentFile = { file: file, base64: (<FileReader>event.target).result, type: file.type } }
+    reader.onload = (event: any) => {
+      this.currentFile = { file: file, base64: (<FileReader>event.target).result, type: file.type }
+      this.files.controls["metadata"].setValue({ type: file.type })
+    }
   }
   uploadFile(event: any) {
     const filesUploaded: File = event.target.files[0];
@@ -68,9 +71,11 @@ export class UploadComponent {
 
     if (this.files.valid) {
 
-      this.files.controls['keywords'].setValue(this.keywords);
-      this.files.controls['file'].setValue(this.currentFile);
+      this.files.controls['keywords'].setValue([...this.keywords]);
+      this.files.controls['content'].setValue(this.currentFile);
       console.log(this.files.value);
+      console.log(this.files.controls['keywords'].value);
+      const formData = new FormData();
 
       await this.uploadFacadeService.instance().save(this.files.value as unknown as FileType);
       // this.files.reset();

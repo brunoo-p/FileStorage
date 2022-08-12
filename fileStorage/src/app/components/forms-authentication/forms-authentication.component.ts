@@ -1,5 +1,5 @@
 import { Component,} from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 import { FormsAuthenticationFacade } from './facade/forms-authentication.facade';
 
@@ -28,7 +28,7 @@ export class FormsAuthenticationComponent {
     this.showLogin = this.showForm === FormType.SignIn;
   }
 
-  async submitLogin(login: FormGroup): Promise<void> {
+  async submitLogin(login: UntypedFormGroup): Promise<void> {
 
     if(login.valid) {
 
@@ -39,7 +39,7 @@ export class FormsAuthenticationComponent {
     }
   }
 
-  async submitRegister(register: FormGroup): Promise<void> {
+  async submitRegister(register: UntypedFormGroup): Promise<void> {
     if (register.valid) {
 
       await this.formsFacade.instance().signUp(register.value);
