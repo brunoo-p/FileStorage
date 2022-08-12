@@ -1,3 +1,4 @@
+import { AppComponent } from './../app.component';
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,6 +19,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     SignUpComponent,
     FormsAuthenticationComponent,
     UploadComponent,
+    AppComponent,
     ModalComponent,
   ],
   imports: [
