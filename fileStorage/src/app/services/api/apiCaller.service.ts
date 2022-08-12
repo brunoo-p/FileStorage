@@ -14,13 +14,13 @@ export class ApiCallerService {
 
   async caller<T>(
     callApi: () => Observable<HttpResponse<T>>,
-    mapper?: (payload: any, header?: any) => T,
+    mapper?: (payload: any, header?: any) => any,
     expectedStatusCode?: HttpStatusCode
   ): Promise<T> {
     try {
       let response: any = callApi();
       response = await lastValueFrom(response);
-
+      console.debug('debug', response);
       ApiRequestValidator.checkStatus(response, expectedStatusCode);
 
       if(mapper) {

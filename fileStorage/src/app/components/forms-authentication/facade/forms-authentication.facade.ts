@@ -1,8 +1,10 @@
+import { ContextAuthService } from './../../../services/api/context/contextAuth.service';
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 
 import { LoginType, RegisterType } from '../types';
 
+import { Profile } from './../../../services/domain/Profile/profile';
 import { RegisterRequest } from '../../../services/domain/auth/registerRequest';
 import { StorageManagerService } from '../../../services/domain/utils/storage/storageManager.service';
 import { LoginRequest } from '../../../services/domain/auth/loginRequest';
@@ -21,7 +23,8 @@ export class FormsAuthenticationFacade {
 
   constructor(
     private loginService: LoginService,
-    private storageManager: StorageManagerService
+    private storageManager: StorageManagerService,
+    private contextAuthService: ContextAuthService
   ) {}
 
   private setKeepConnected(data: any) {
@@ -35,10 +38,12 @@ export class FormsAuthenticationFacade {
       new Password(login.password)
     );
 
-    const response: HttpResponse<any> = await this.loginService.instance().signIn(createLogin);
-    console.log('form facade', response);
-    if(response.ok && keepConnected) {
-      this.setKeepConnected(login);
+    const response: Profile = await this.loginService.instance().signIn(createLogin);
+
+    this.contextAuthService.userProfile = response;
+
+    if(response.isActive && keepConnected) {
+      this.setKeepConnected(login.email);
     }
   }
 
@@ -53,6 +58,7 @@ export class FormsAuthenticationFacade {
     );
 
     const response: HttpResponse<any> = await this.loginService.instance().signUp(createRegister);
+
   }
 
 

@@ -17,21 +17,24 @@ export class FileService {
   private api: HttpClient;
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private apiCallerService: ApiCallerService
   ) {
 
     this.api = this.httpClient;
 
   }
-  private async saveFile(api: HttpClient, file: FileRequest): Promise<any> {
+  private async saveFile(api: HttpClient, profileId: string, file: FileRequest): Promise<any> {
+    console.log(profileId, file);
+    const url = `${this.baseUrl}/document/${profileId}`
     const callApi = () => api
       .post<FileRequest>(
-        this.baseUrl,
-        JSON.stringify(file),
+        url,
+        file,
         { observe: 'response'}
       );
 
-    return await ApiCallerService.caller(callApi, undefined, HttpStatusCode.CREATED);
+    return await this.apiCallerService.caller(callApi, undefined, HttpStatusCode.CREATED);
 
   }
 
@@ -42,12 +45,12 @@ export class FileService {
         { observe: 'response' }
       )
 
-      return await ApiCallerService.caller(callApi, undefined, HttpStatusCode.OK);
+      return await this.apiCallerService.caller(callApi, undefined, HttpStatusCode.OK);
   };
 
 
   instance = (): IFileService => ({
-    save: (file: FileRequest) => this.saveFile(this.api, file),
+    save: (profileId: string, file: FileRequest) => this.saveFile(this.api, profileId, file),
     listAll: () => this.listAll(this.api)
   })
 }

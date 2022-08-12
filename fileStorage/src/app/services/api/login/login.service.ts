@@ -5,9 +5,9 @@ import { Injectable } from "@angular/core";
 import { environment } from './../../../../environments/environment';
 
 import { IAuth } from '../../interfaces/IAuth';
-import { ContextAuthService } from './../context/contextAuth.service';
 import { LoginRequest } from "../../domain/auth/loginRequest";
 import { RegisterRequest } from './../../domain/auth/registerRequest';
+import { MapProfile } from '../../domain/Profile/mapProfile.service';
 
 import { ApiCallerService } from './../apiCaller.service';
 import { HttpStatusCode } from '../http/httpType';
@@ -24,7 +24,7 @@ export class LoginService {
   constructor(
     private apiCallerService: ApiCallerService,
     private httpClient: HttpClient,
-
+    private mapProfile: MapProfile
   ) {
 
     this.api = this.httpClient;
@@ -36,10 +36,10 @@ export class LoginService {
     const callApi = () => api
       .post<LoginRequest>(
         url,
-        {email: login.email.value, password: login.password.value},
+        login,
         { observe: 'response' }
       );
-    return await this.apiCallerService.caller(callApi, undefined, HttpStatusCode.OK);
+    return await this.apiCallerService.caller(callApi, this.mapProfile.fromObject, HttpStatusCode.OK);
 
   }
 
@@ -49,12 +49,10 @@ export class LoginService {
     const callApi = () => api
       .post<RegisterRequest>(
         url,
-        JSON.stringify(register),
+        register,
         { observe: 'response' }
       );
-    const response = this.apiCallerService.caller(callApi, undefined, HttpStatusCode.CREATED);
-
-    console.log(response);
+    return await this.apiCallerService.caller(callApi, undefined, HttpStatusCode.CREATED);
 
   }
 

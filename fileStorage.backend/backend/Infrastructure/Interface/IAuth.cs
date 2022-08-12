@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Interface
 {
-    public interface IAuth
+    public interface IAuth : IGenericInterface<Profile, ProfileDTO>
     {
-        Profile Login( Login login );
-        Profile Save ( ProfileDTO profile );
+        Profile Login( LoginDTO login );
+        Profile Save ( ProfileDTO entity );
         Profile Update( string id, ProfileDTO update);
-        bool Remove( string id );
+        bool Delete( string id );
     }
 }
