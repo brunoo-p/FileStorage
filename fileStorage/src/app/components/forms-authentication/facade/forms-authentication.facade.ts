@@ -4,7 +4,6 @@ import { Injectable } from "@angular/core";
 
 import { LoginType, RegisterType } from '../types';
 
-import { Profile } from '../../../services/domain/profile';
 import { RegisterRequest } from '../../../services/domain/auth/registerRequest';
 import { StorageManagerService } from '../../../services/domain/utils/storage/storageManager.service';
 import { LoginRequest } from '../../../services/domain/auth/loginRequest';
@@ -38,7 +37,7 @@ export class FormsAuthenticationFacade {
       new Password(login.password)
     );
 
-    const response: Profile = await this.loginService.instance().signIn(createLogin);
+    const response = await this.loginService.instance().signIn(createLogin);
 
     this.contextAuthService.userProfile = response;
 
