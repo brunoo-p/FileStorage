@@ -9,37 +9,35 @@ namespace Infrastructure.Entities.DTO
     {
         [BsonRequired]
         [Required]
-        public string IdUser { get; private set; }
+        public string ProfileId { get; set; }
 
         [BsonRequired]
         [Required]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         [BsonRequired]
-        public string? Description { get; private set; }
+        public string? Description { get; set; }
 
         [BsonRequired]
-        public List<string>? Keywords { get; private set; }
+        public List<string>? Keywords { get; set; }
+
+
+        public string? Content { get; set; }
 
         [BsonRequired]
         [Required]
-        public string Content { get; private set; }
+        public string Metadata { get; set; }
 
-        [BsonRequired]
-        [Required]
-        public Metadata Metadata { get; private set; }
-
-        [BsonIgnore]
         [NotMapped]
         public IFormFile ImagePath { get; set; }
 
         [BsonDefaultValue(false)]
         public bool IsDeleted { get; set; } = false;
 
-        public DocumentDTO( string id, string idUser, string name, string description, List<string> keywords, string content, Metadata metadata )
+        public DocumentDTO( string profileId, string name, string description, List<string> keywords, string content, string metadata )
         {
 
-            IdUser = idUser;
+            ProfileId = ProfileId;
             Name = name;
             Description = description;
             Keywords = keywords;
@@ -47,5 +45,7 @@ namespace Infrastructure.Entities.DTO
             Metadata = metadata;
 
         }
+        public DocumentDTO() { }
     }
+
 }

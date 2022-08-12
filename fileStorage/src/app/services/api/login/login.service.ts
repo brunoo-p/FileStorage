@@ -7,7 +7,7 @@ import { environment } from './../../../../environments/environment';
 import { IAuth } from '../../interfaces/IAuth';
 import { LoginRequest } from "../../domain/auth/loginRequest";
 import { RegisterRequest } from './../../domain/auth/registerRequest';
-import { MapProfile } from '../../domain/Profile/mapProfile.service';
+import { MapProfile } from '../../domain/profile/mappers/mapProfile.service';
 
 import { ApiCallerService } from './../apiCaller.service';
 import { HttpStatusCode } from '../http/httpType';

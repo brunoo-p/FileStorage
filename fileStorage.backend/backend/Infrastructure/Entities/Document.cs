@@ -9,7 +9,7 @@ namespace Infrastructure.Entities
     {
         [BsonRequired]
         [Required]
-        public string IdUser { get; set; }
+        public string ProfileId { get; set; }
 
         [BsonRequired]
         [Required]
@@ -27,39 +27,42 @@ namespace Infrastructure.Entities
 
         [BsonRequired]
         [Required]
-        public Metadata Metadata { get; set; }
+        public string Metadata { get; set; }
 
         [NotMapped]
-        [BsonIgnore]
         public IFormFile ImagePath { get; set; }
 
         [BsonDefaultValue(false)]
         public bool IsDeleted { get; set; } = false;
 
-        public Document(string id, string idUser, string name, string description, List<string> keywords, byte[] content, Metadata metadata) {
-
-            Id = id;
-            IdUser = idUser;
-            Name = name;
-            Description = description;
-            Keywords = keywords;
-            Content = content;
-            Metadata = metadata;
-        
-        }
-        public Document( string idUser, string name, string description, List<string> keywords, byte[] content, Metadata metadata )
+        public Document( string id, string profielId, string name, string description, List<string> keywords, byte[] content, string metadata )
         {
 
-            IdUser = idUser;
+            Id = id;
+            ProfileId = profielId;
             Name = name;
             Description = description;
             Keywords = keywords;
             Content = content;
             Metadata = metadata;
 
+        }
+        public Document( string profileId, string name, string description, List<string> keywords, byte[] content, string metadata )
+        {
+
+            ProfileId = profileId;
+            Name = name;
+            Description = description;
+            Keywords = keywords;
+            Content = content;
+            Metadata = metadata;
         }
     }
 
+    public class Name
+    {
+        public string Value { get; set; }
+    }
     public class Metadata {
 
         [Required]

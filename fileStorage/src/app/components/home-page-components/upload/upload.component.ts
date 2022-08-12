@@ -27,16 +27,19 @@ export class UploadComponent {
     this.files = this.formBuilder.group({
       name: ['', Validators.required],
       description: [''],
-      file: [null],
-      keywords: [['']]
+      keywords: [['']],
+      content: [null],
+      metadata: ['', Validators.required]
     });
   }
-
 
   createUrlPreview(file: File) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = (event: any) => { this.currentFile = { file: file, base64: (<FileReader>event.target).result, type: file.type } }
+    reader.onload = (event: any) => {
+      this.currentFile = { file: file, base64: (<FileReader>event.target).result, type: file.type }
+      this.files.controls["metadata"].setValue({ type: file.type })
+    }
   }
   uploadFile(event: any) {
     const filesUploaded: File = event.target.files[0];
@@ -68,9 +71,11 @@ export class UploadComponent {
 
     if (this.files.valid) {
 
-      this.files.controls['keywords'].setValue(this.keywords);
-      this.files.controls['file'].setValue(this.currentFile);
+      this.files.controls['keywords'].setValue([...this.keywords]);
+      this.files.controls['content'].setValue(this.currentFile);
       console.log(this.files.value);
+      console.log(this.files.controls['keywords'].value);
+      const formData = new FormData();
 
       await this.uploadFacadeService.instance().save(this.files.value as unknown as FileType);
       // this.files.reset();

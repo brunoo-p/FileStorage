@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
 
 import { LoginType, RegisterType } from '../types';
 
-import { Profile } from './../../../services/domain/Profile/profile';
+import { Profile } from '../../../services/domain/profile/profile';
 import { RegisterRequest } from '../../../services/domain/auth/registerRequest';
 import { StorageManagerService } from '../../../services/domain/utils/storage/storageManager.service';
 import { LoginRequest } from '../../../services/domain/auth/loginRequest';

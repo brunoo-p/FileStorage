@@ -18,7 +18,7 @@ namespace Domain.Repositories
 
         public List<Document> ListAll( string profileId)
         {
-            return _collection.Find(_ => _.Id == profileId && _.IsDeleted == false)
+            return _collection.Find(_ => _.ProfileId == profileId && _.IsDeleted == false)
                 .ToList();
         }
 
@@ -36,14 +36,15 @@ namespace Domain.Repositories
                 var fileBytes = ms.ToArray();
 
                 var newDocument = new Document(
-                    idUser: profileId,
+                    profileId: profileId,
                     name: document.Name,
                     description: document.Description,
-                    keywords: new List<string>(document.Keywords),
+                    keywords: document.Keywords,
                     content: fileBytes,
                     metadata: document.Metadata
                 );
 
+                _collection.InsertOne(newDocument);
                 return newDocument;
 
             } catch (Exception ex)
@@ -56,6 +57,26 @@ namespace Domain.Repositories
         {
             throw new NotImplementedException();
         }
-        
+
+        private Document GetById( string id )
+        {
+            try
+            {
+                var isValidID = Base.VerifyLengthId(id);
+
+                if ( !isValidID )
+                {
+                    return null;
+                }
+
+                return _collection.Find(_ => _.Id == id && _.IsDeleted == false).FirstOrDefault();
+
+            }
+            catch ( Exception ex )
+            {
+                throw new Exception($"Error: {ex}");
+            }
+        }
+
     }
 }
