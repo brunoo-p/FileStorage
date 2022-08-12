@@ -1,4 +1,4 @@
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 import { FormType } from './../types';
 import { Component, EventEmitter, Output } from "@angular/core";
 
@@ -10,10 +10,10 @@ import { Component, EventEmitter, Output } from "@angular/core";
 export class SignInComponent {
 
   @Output() setFormToShow = new EventEmitter<keyof typeof FormType>();
-  @Output() eventSubmitLogin = new EventEmitter<FormGroup>();
-  login: FormGroup;
+  @Output() eventSubmitLogin = new EventEmitter<UntypedFormGroup>();
+  login: UntypedFormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: UntypedFormBuilder) {
 
     this.login = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

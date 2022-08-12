@@ -7,6 +7,7 @@ import { environment } from './../../../../environments/environment';
 import { IAuth } from '../../interfaces/IAuth';
 import { LoginRequest } from "../../domain/auth/loginRequest";
 import { RegisterRequest } from './../../domain/auth/registerRequest';
+import { ProfileMapperService } from '../../domain/profile/mappers/profileMapper.service';
 
 import { ApiCallerService } from './../apiCaller.service';
 import { HttpStatusCode } from '../http/httpType';
@@ -22,6 +23,7 @@ export class LoginService {
 
   constructor(
     private apiCallerService: ApiCallerService,
+    private profileMapperService: ProfileMapperService,
     private httpClient: HttpClient,
   ) {
 
@@ -37,7 +39,7 @@ export class LoginService {
         login,
         { observe: 'response' }
       );
-    return await this.apiCallerService.caller(callApi, undefined , HttpStatusCode.OK);
+    return await this.apiCallerService.caller(callApi, this.profileMapperService.fromObject, HttpStatusCode.OK);
 
   }
 
@@ -50,7 +52,7 @@ export class LoginService {
         register,
         { observe: 'response' }
       );
-    return await this.apiCallerService.caller(callApi, undefined, HttpStatusCode.CREATED);
+    return await this.apiCallerService.caller(callApi, this.profileMapperService.fromObject, HttpStatusCode.CREATED);
 
   }
 

@@ -1,4 +1,4 @@
-import { FormGroup, AbstractControl } from '@angular/forms';
+import { UntypedFormGroup, AbstractControl } from '@angular/forms';
 import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from "@angular/core";
   styleUrls: ['../styles.css']
 })
 export class InputPassword {
-  @Input() formGroup!: FormGroup;
+  @Input() formGroup!: UntypedFormGroup;
   @Input() controlName!: string;
 
   get formControl(): AbstractControl {

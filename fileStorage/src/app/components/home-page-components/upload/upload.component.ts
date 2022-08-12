@@ -1,7 +1,7 @@
 import { FileType } from './types';
 import { UploadFacadeService } from './facade/upload.facade';
 import { FileService } from './../../../services/domain/file/file.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Component } from "@angular/core";
 
 @Component({
@@ -11,7 +11,7 @@ import { Component } from "@angular/core";
 })
 export class UploadComponent {
 
-  files: FormGroup;
+  files: UntypedFormGroup;
   currentFile: any;
 
   keywords: Set<string> = new Set([]);
@@ -20,7 +20,7 @@ export class UploadComponent {
   showModal: boolean = false;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private uploadFacadeService: UploadFacadeService
   ) {
 
