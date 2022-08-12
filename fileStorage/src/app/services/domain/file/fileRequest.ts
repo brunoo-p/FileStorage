@@ -7,8 +7,8 @@ export class FileRequest {
     public name: FileName,
     public description: TypeofDescription,
     public keywords: TypeofKeywords,
-    public metadata: FileMetadata,
     public file: any,
+    public metadata: FileMetadata,
   )
   {}
 }

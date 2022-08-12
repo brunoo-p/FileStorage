@@ -1,17 +1,28 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.ComponentModel.DataAnnotations;
 
-public class Login
+public class Login : Base
 {
+    [BsonRequired]
     [Required]
-    public string Email { get; private set; }
+    public Email Email { get; private set; }
 
+    [BsonRequired]
     [Required]
-    public string Password { get; private set; }
+    public Password Password { get; private set; }
     
-    public Login( string email, string password ) {
+    public Login( Email email, Password password ) {
 
         Email = email;
         Password = password;
     }
 }
+public class Email {
+    public string Value { get; set; }
+}
+public class Password
+{
+    public string Value { get; set; }
+}
+

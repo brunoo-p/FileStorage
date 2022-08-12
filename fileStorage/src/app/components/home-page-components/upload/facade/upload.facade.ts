@@ -1,3 +1,4 @@
+import { ContextAuthService } from './../../../../services/api/context/contextAuth.service';
 import { Injectable } from '@angular/core';
 
 import { FileService } from '../../../../services/domain/file/file.service';
@@ -14,7 +15,8 @@ import { FileType } from '../types';
 export class UploadFacadeService {
 
   constructor(
-    private fileService: FileService
+    private fileService: FileService,
+    private contextAuthService: ContextAuthService
   ) {}
 
   private async save(file: FileType): Promise<void> {
@@ -24,11 +26,13 @@ export class UploadFacadeService {
       new FileName(name),
       description,
       keywords,
+      content.file,
       new FileMetadata( content.type),
-      content.file
     )
+    let profileId = '62f5c08aea7ab48433fd5685';
 
-    await this.fileService.instance().save(newFile);
+    const response = await this.fileService.instance().save(profileId, newFile);
+    console.log('response', response);
   }
 
   private async listAll(): Promise<any> {

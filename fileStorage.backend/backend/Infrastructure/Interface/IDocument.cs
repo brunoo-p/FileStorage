@@ -3,12 +3,12 @@ using Infrastructure.Entities.DTO;
 
 namespace Infrastructure.Interface
 {
-    public interface IDocument
+    public interface IDocument : IGenericInterface<Document, DocumentDTO>
     {
-        Document Save( DocumentDTO document );
+        Document Save( string profileId, DocumentDTO entity );
         List<Document> ListAll( string prfileId );
-        Document Update( string documetnId, DocumentDTO update );
-        bool Remove( string documentId );
+        Document Update( string id, DocumentDTO update );
+        bool Delete( string id );
         
     }
 }
