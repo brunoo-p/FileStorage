@@ -1,4 +1,4 @@
-import { AppComponent } from './../app.component';
+import { NavbarComponent } from './home-page-components/navbar/nav.component';
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MaterialAngularModule } from './material-angular/material-angular.module';
 import { FieldsModule } from './fields/fields.module';
 
+import { CardContainerComponent } from './home-page-components/upload/card-file/card.component';
 import { UploadComponent } from './home-page-components/upload/upload.component';
 import { SignUpComponent } from './forms-authentication/signUp/signUp.component';
 import { FormsAuthenticationComponent } from './forms-authentication/forms-authentication.component';
@@ -19,8 +20,9 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     SignUpComponent,
     FormsAuthenticationComponent,
     UploadComponent,
-    AppComponent,
     ModalComponent,
+    NavbarComponent,
+    CardContainerComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     SignInComponent,
     UploadComponent,
     ModalComponent,
+    NavbarComponent,
+    CardContainerComponent
   ],
 })
 export class ComponentsModule { }

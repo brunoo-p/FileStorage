@@ -5,7 +5,7 @@
       </label>
       <input type="file" name="file" id="file" (change)="uploadFile($event)">
 
-      <app-modal *ngIf="showModal">
+      <app-modal *ngIf="currentFile">
         <div class="content-modal" [ngStyle]="{ 'grid-template-columns': toggleBtn.checked ? '50% 50%' : '0% 100%' }">
 
           <section class="previewImage" [ngStyle]="{'width': toggleBtn.checked ? '100%' : '0%' }">
@@ -48,7 +48,7 @@
               </div>
               <div class="descriptionInput">
                 <label for="name"> Description </label>
-                <textarea formControlName="description" name="description" id="description" rows="5" placeholder="Ex: This file contain details about my travel." ></textarea>
+                <textarea formControlName="description"  value="description" name="description" id="description" rows="5" placeholder="Ex: This file contain details about my travel." ></textarea>
               </div>
 
               <label>Type a few keywords</label>

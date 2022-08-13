@@ -1,7 +1,71 @@
 <div class="container">
+  <div class="parallax">
   <div class="content">
 
-    <app-upload></app-upload>
+    <app-navbar></app-navbar>
+
+    <section class="section">
+
+    </section>
+    <section class="section" id="first-section">
+        <div class="section-container">
+
+            <ng-container *ngFor="let file of mockFiles; trackByFile">
+
+              <div style="margin: 0.5em 1em">
+                <app-card-container
+                (setEditFile)="setCurrentFile($event)"
+                [file]="file"
+              ></app-card-container>
+
+              </div>
+            </ng-container>
+
+            <app-upload
+              [file]="currentFile"
+              (setCurrentFile)="setCurrentFile($event)"
+            ></app-upload>
+
+        </div>
+    </section>
+
+    <section class="section" id="secondary-section">
+      <div class="section-container">
+
+      </div>
+    </section>
+
+    <section class="section" id="tertiary-section">
+      <div class="section-container">
+        <article>
+          <h2> Nothing great is Made alone. </h2>
+          <div>
+            <label for="subtitle">
+              Figma connects everyone in the design process
+              <br>
+              so teams can deliver better products, faster.
+            </label>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="commentsSection">
+      <div class="commentsSection-container">
+        <article>
+          <img src="https://static.vecteezy.com/system/resources/previews/000/420/855/original/avatar-icon-vector-illustration.jpg" alt="avatar">
+          <h2> Bruno Paulino </h2>
+          <div>
+            <label for="subtitle">
+              Figma connects everyone in the design process
+              <br>
+              so teams can deliver better products, faster.
+            </label>
+          </div>
+        </article>
+      </div>
+    </section>
 
   </div>
+</div>
 </div>

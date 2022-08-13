@@ -1,0 +1,31 @@
+.container-nav {
+  display: flex;
+  width: 100vm;
+  height: auto;
+  background-attachment: fixed;
+  background-color: var(--background-dark-color);
+  align-items: center;
+  padding: 10px 32px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  color: #FFFF;
+}
+#logo {
+  display: flex;
+  width: auto;
+  padding: 10px 30px;
+  border-radius: 3px;
+  background: var(--secondary-color);
+  color: var(--tertiary-color);
+  font-size: 20px;
+  font-weight: 900;
+  animation: 4s show infinite forwards;
+}
+@keyframes show {
+  0% { transform: translateY(3px) }
+  65% { transform: translateY(0px) }
+  100% { transform: translateY(3px) }
+}
+.container-nav::before {
+   background: var(--background-dark-color);
+}

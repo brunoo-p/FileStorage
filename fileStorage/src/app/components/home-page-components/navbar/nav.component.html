@@ -1,0 +1,21 @@
+<nav class="container-nav">
+  <a for="logo" id="logo" href="#"> Pobrebox </a>
+  <div>
+    <mat-accordion>
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <button aria-label="icon translate">
+            <mat-icon>g_translate</mat-icon>
+          </button>
+          Language
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p> Portuguese </p>
+      <p> English </p>
+    </mat-expansion-panel>
+  </mat-accordion>
+  </div>
+</nav>

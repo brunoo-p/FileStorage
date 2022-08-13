@@ -36,10 +36,8 @@ export class UploadFacadeService {
     const response = await this.fileService.instance().save(data);
   }
 
-  private async listAll(): Promise<any> {
-    const profileId = '62f5c08aea7ab48433fd5685';
-    const response = await this.fileService.instance().listAll(profileId);
-    console.log(response);
+  private async listAll(profileId: string): Promise<any> {
+    return await this.fileService.instance().listAll(profileId);
   }
   private edit(id: string, update: Omit<FileType, 'file'>): any {
     console.log(id, update);
@@ -49,13 +47,13 @@ export class UploadFacadeService {
 
   instance = (): IFileFacade => ({
     save: (file: FileType) => this.save(file),
-    listAll: () => this.listAll(),
+    listAll: (profileId: string) => this.listAll(profileId),
     edit: (id: string, update: Omit<FileType, 'file'>) => this.edit(id, update)
   })
 }
 
 interface IFileFacade {
   save: (File: FileType) => Promise<void>,
-  listAll: () => Promise<any>,
+  listAll: (profileId: string) => Promise<any>,
   edit: (id: string, update: Omit<FileType, 'file'>) => any
 }
