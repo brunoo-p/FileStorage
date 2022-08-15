@@ -12,6 +12,7 @@ input {
   border: 1px solid var(--primary-color);
   font-size: 16px;
   margin: .3em 0 1em 0;
+  font-weight: 700;
 }
 .input-error {
   border: 1px solid red;

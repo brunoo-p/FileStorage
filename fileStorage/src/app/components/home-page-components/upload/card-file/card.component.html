@@ -1,5 +1,6 @@
 <div class="container">
   <img [src]="imageShow" [alt]="file.name.value" *ngIf="file?.metadata?.type.includes('image')">
+  <img src="https://th.bing.com/th/id/R.eba774b485ea76760debfbccf1a6b42c?rik=TMPXsf5DsI%2fXFw&pid=ImgRaw&r=0" [alt]="file.name.value" *ngIf="file?.metadata?.type.includes('pdf')">
 
   <!-- <pdf-viewer class="pdfPreview" [src]="pdf"
     #pdfViewer
@@ -8,7 +9,6 @@
     style="width: 95%; height: 100%"
     *ngIf="file?.metadata?.type.includes('pdf')"
   ></pdf-viewer> -->
-  <object *ngIf="file?.metadata?.type.includes('pdf')" data="pdf" type="application/pdf"></object>
 
   <h2> {{ file.name.value }} </h2>
 
@@ -31,11 +31,11 @@
       <button mat-mini-fab aria-label="edit" (click)="editFile(file)">
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-mini-fab aria-label="download">
+      <button mat-mini-fab aria-label="download" (click)="downloadFile(file)">
         <mat-icon>cloud_download</mat-icon>
       </button>
-      <button mat-mini-fab aria-label="delete">
-        <mat-icon (click)="deleteFile(file)">delete</mat-icon>
+      <button mat-mini-fab aria-label="delete" (click)="deleteFile(file)">
+        <mat-icon>delete</mat-icon>
       </button>
     </div>
   </div>

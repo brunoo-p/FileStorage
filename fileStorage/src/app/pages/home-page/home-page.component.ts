@@ -9,8 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit{
 
-  mockFiles: any;
-  files: any = [];
+  files: FileRequest[] = [];
 
   constructor(
     private uploadFacadeService: UploadFacadeService,

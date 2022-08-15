@@ -3,6 +3,7 @@
   height: 100%;
   max-height: 345px;
   max-width: 300px;
+  min-width: 300px;
   border-radius: 14px;
   box-shadow: rgb(0 0 0 / 10%) 0px 2px 4px 0px;
   border: 1px solid rgb(231, 238, 236);

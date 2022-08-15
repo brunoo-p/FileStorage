@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialAngularModule } from '../app/components/material-angular/material-angular.module';
 
-import { httpInterceptorProviders } from './services/domain/auth/interceptors/index';
+import { httpInterceptorProviders } from './services/domain/interceptors/index';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ComponentsModule } from './components/components.module';
 import { AuthenticationPageComponent } from './pages/authentication-page/authentication-page.component';

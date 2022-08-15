@@ -1,6 +1,7 @@
 import { FileServiceObservable } from './../../../../services/observables/file.service';
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { DomSanitizer } from '@angular/platform-browser';
+import { ArrayBuffer } from './service/toArrayBuffer';
 
 @Component({
   selector: 'app-card-container',
@@ -9,7 +10,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class CardContainerComponent implements OnInit{
   @Input() file!: any;
+
   @Output() setExcludeFile = new EventEmitter();
+  @Output() setDownloadFile = new EventEmitter();
 
   isImage = true;
   imageShow: any;
@@ -41,5 +44,14 @@ export class CardContainerComponent implements OnInit{
     this.fileServiceObservable.fileList = list?.filter((file: any) => file.id !== excludeFile.id);
 
     this.setExcludeFile.emit(excludeFile);
+  }
+  downloadFile(downloadFile: any) {
+    // let file = documents.filter(doc => ( doc.id === idFile ));
+
+    // let name = file[0].docName;
+
+    const arrayBuffer = ArrayBuffer.base64ToArrayBuffer(downloadFile.content);
+    ArrayBuffer.createAndDownloadBlobFile (arrayBuffer, downloadFile.name.value, downloadFile.metadata.type);
+    console.log(downloadFile);
   }
 }

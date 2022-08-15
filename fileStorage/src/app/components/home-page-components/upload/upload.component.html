@@ -3,6 +3,10 @@
 
       <app-header class="container-header" (setUploadFile)="uploadFile($event)"></app-header>
 
+      <div class="container-message-badge">
+        <app-message-badge></app-message-badge>
+      </div>
+
       <app-modal *ngIf="file">
         <div class="content-modal" [ngStyle]="{ 'grid-template-columns': toggleBtn.checked ? '50% 50%' : '0% 100%' }">
 
@@ -13,7 +17,7 @@
             <pdf-viewer class="pdfPreview" [src]="imageShow"
               [render-text]="true"
               [original-size]="false"
-              style="width: 95%; height: 100%"
+              style="width: 95%; height: 100%; min-height: 600px;"
               *ngIf="metadata.type.includes('pdf')"
             ></pdf-viewer>
 
@@ -55,6 +59,7 @@
                   placeholder="Ex: travel, company..."
                   (change)="addKeywordFromInput($event)"
                 >
+                <button> </button>
               </div>
 
               <div class="keywordList">
@@ -70,8 +75,15 @@
               </div>
 
               <div class="submit">
-                <button type="submit" (click)="closeModal()"> Cancel </button>
-                <button type="submit" (click)="submitFile()"> Save File</button>
+
+                <button type="button" (click)="closeModal()" class="cancel"> Cancel </button>
+
+                <div class="send">
+
+                  <button type="submit" (click)="submitFile($event)"> Save File</button>
+                  <mat-icon class="icon">cloud_upload</mat-icon>
+
+                </div>
               </div>
             </form>
 

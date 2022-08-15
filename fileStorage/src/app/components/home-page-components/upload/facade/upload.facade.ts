@@ -38,6 +38,7 @@ export class UploadFacadeService {
     if(content.id){
       return await this.fileService.instance().edit(content.id, data);
     }else {
+      this.listAll();
       return await this.fileService.instance().save(data);
     }
   }
