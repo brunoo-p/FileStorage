@@ -7,7 +7,9 @@ input {
   outline: none;
   border: 1px solid var(--primary-color);
 }
-
+.container-message-badge {
+  width: 100%;
+}
 .container {
   display: flex;
   width: 100%;

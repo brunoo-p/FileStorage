@@ -1,3 +1,4 @@
+import { MessageBadgeComponent } from './message/message-badge.component';
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -30,7 +31,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     HeaderComponent,
     ModalComponent,
     NavbarComponent,
-    CardContainerComponent
+    CardContainerComponent,
+    MessageBadgeComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     HeaderComponent,
     ModalComponent,
     NavbarComponent,
-    CardContainerComponent
+    CardContainerComponent,
+    MessageBadgeComponent
   ],
 })
 export class ComponentsModule { }

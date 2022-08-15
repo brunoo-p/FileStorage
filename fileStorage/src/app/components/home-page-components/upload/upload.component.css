@@ -16,6 +16,9 @@
   background: var(--background-light-color);
   box-sizing: border-box;
 }
+.container-message-badge {
+  width: 80%;
+}
 .inputContainer {
   display: flex;
   width: 100%;
@@ -47,8 +50,9 @@
   justify-content: center;
 }
 
+
 .previewImage {
-  width: 0%;
+  width: 100%;
   display: flex;
   height: 100%;
   padding: 10px;
@@ -60,6 +64,7 @@
 .previewImage .image, .pdfPreview {
   width: 100%;
   height: 100%;
+  min-height: 600px;
   border-radius: 10px;
   object-fit: contain;
   transition: .3s linear;
@@ -174,7 +179,7 @@
   padding: 5px 20px;
   margin: 0 .8em .8em 0;
   border-radius: 20px;
-  background: linear-gradient(180deg, transparent 33.634%, var(--primary-color) 77.539%, var(--secondary-color));
+  border: 2px solid var(--primary-color);
   transition: .5s ease-in;
 }
 .metadata form .chipInput {
@@ -194,6 +199,7 @@ input::placeholder, textarea::placeholder{
   height: auto;
   margin: 1em 0;
   justify-content: center;
+  transition: .2s ease-in;
 }
 .submit button {
   border-radius: 8px;
@@ -205,17 +211,44 @@ input::placeholder, textarea::placeholder{
   font-weight: 700;
   transition: .2s ease-in;
 }
-.submit button:first-child {
+.submit .cancel {
   background: #e74c3c;
   margin-right: 1.5em;
 }
-.submit button:last-child {
-  color: var(--primary-color);
-  border: 2px solid var(--primary-color);
-}
-.submit button:last-child:hover {
+.submit .send {
+  border-radius: 8px;
   color: var(--background-light-color);
+  border: 2px solid var(--primary-color);
   background: var(--primary-color);
+  transition: .2s ease-in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+}
+.submit .send button {
+  background: inherit;
+  color: inherit;
+  transition: 0s;
+}
+.submit .send:hover {
+  color: var(--secondary-color);
+  background: var(--background-light-color);
+  border: 2px solid var(--secondary-color);
+  width: 130px;
+}
+.submit .send .icon{
+  opacity: 0;
+  display: none;
+  transform: translateX(-20px);
+  color: var(--secondary-color);
+  transition: .2s ease-in;
+}
+.submit .send:hover .icon{
+  opacity: 1;
+  display: flex;
+  transform: translateX(0px);
+
 }
 .submit button:hover {
   opacity: .8;

@@ -91,17 +91,24 @@ export class UploadComponent{
 
   addKeywordFromInput(event: any) {
     const newKeyword = event.target.value;
+
     if (newKeyword.trim()) {
       this.keywords.add(newKeyword);
       event.target.value = '';
     }
+
   }
   removeKeyword(keyword: string) {
     this.keywords.delete(keyword);
   }
 
-  async submitFile() {
+  async submitFile(event: any) {
 
+    if(event.keyCode === 13) {
+
+      event.preventDefault();
+
+    }
     if (this.files.valid) {
 
       this.files.controls['keywords'].setValue([...this.keywords]);

@@ -4,6 +4,9 @@
     <div class="forms">
 
       <div class="contentForms" >
+        <div class="container-message-badge">
+          <app-message-badge></app-message-badge>
+        </div>
         <div *ngIf="showLogin; else registerForm" class="container-form">
 
           <app-signIn
