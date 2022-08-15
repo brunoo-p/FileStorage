@@ -9,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class CardContainerComponent implements OnInit{
   @Input() file!: any;
-  @Output() setEditFile = new EventEmitter();
+  @Output() setExcludeFile = new EventEmitter();
 
   isImage = true;
   imageShow: any;
@@ -34,6 +34,12 @@ export class CardContainerComponent implements OnInit{
   }
   editFile(file: any) {
     this.fileServiceObservable.editFile = file;
-    this.fileServiceObservable.editFile.subscribe((file: any) => console.log(file));
+  }
+  deleteFile(excludeFile: any) {
+    let list: any;
+    this.fileServiceObservable.fileList.subscribe((prev: any) => list= prev);
+    this.fileServiceObservable.fileList = list?.filter((file: any) => file.id !== excludeFile.id);
+
+    this.setExcludeFile.emit(excludeFile);
   }
 }

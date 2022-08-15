@@ -64,10 +64,23 @@ export class FileService {
       return response;
   };
 
+  private async remove(api: HttpClient, documentId: string) {
+    const url = `${this.baseUrl}/document/${documentId}`;
+    const callApi = () => api
+      .delete<any>(
+        url,
+        { observe: 'response' }
+      )
+
+      const response = await this.apiCallerService.caller(callApi, undefined, HttpStatusCode.ACCEPTED);
+      console.log(response);
+      return response;
+  };
 
   instance = (): IFileService => ({
     save: (file: FormData) => this.saveFile(this.api, file),
     edit: (documentId: string, update: FormData) => this.editFile(this.api, documentId, update),
-    listAll: (profileId: string) => this.listAll(this.api, profileId)
+    listAll: (profileId: string) => this.listAll(this.api, profileId),
+    remove: (documentId: string) => this.remove(this.api, documentId),
   })
 }

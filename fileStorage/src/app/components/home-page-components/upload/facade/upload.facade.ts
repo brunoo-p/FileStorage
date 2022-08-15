@@ -49,14 +49,22 @@ export class UploadFacadeService {
     this.fileServiceObservable.fileList = response;
   }
 
+  private async remove(documentId: string) {
+
+    const response = await this.fileService.instance().remove(documentId);
+    console.log(response);
+  }
 
   instance = (): IFileFacade => ({
     saveOrUpdate: (file: FileType) => this.saveOrUpdate(file),
     listAll: () => this.listAll(),
+    remove: (documentId: string) => this.remove(documentId)
   })
 }
 
 interface IFileFacade {
   saveOrUpdate: (File: FileType) => Promise<void>,
   listAll: () => Promise<any>,
+  remove: (documentId: string) => Promise<any>
+
 }

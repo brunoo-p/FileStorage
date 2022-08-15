@@ -1,3 +1,4 @@
+import { FileRequest } from './../../services/domain/file/fileRequest';
 import { FileServiceObservable } from './../../services/observables/file.service';
 import { UploadFacadeService } from './../../components/home-page-components/upload/facade/upload.facade';
 import { Component, OnInit } from '@angular/core';
@@ -8,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit{
 
-  currentFile: any;
   mockFiles: any;
   files: any = [];
 
@@ -27,8 +27,7 @@ export class HomePageComponent implements OnInit{
   trackByFile(index: number){
     return index;
   }
-  setCurrentFile(event: any){
-    this.fileServiceObservable.editFile = event;
-    this.fileServiceObservable.editFile.subscribe((file: any) => this.currentFile = file);
+  setExcludeFile(file: any){
+    this.uploadFacadeService.instance().remove(file.id)
   }
 }

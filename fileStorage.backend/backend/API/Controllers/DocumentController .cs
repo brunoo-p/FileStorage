@@ -45,14 +45,15 @@ namespace API.Controllers
         }
 
         [SwaggerOperation(Summary = "Remove Document", Description = "Set a flag docunent deleted")]
-        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(string), 202)]
         [HttpDelete]
-        public ActionResult Remove( string id )
+        [Route("{documentId}")]
+        public ActionResult Remove(string documentId )
         {
-            var response = _repository.Delete(id);
+            var response = _repository.Delete(documentId);
             if ( response )
             {
-                return StatusCode(203, "Removed");
+                return StatusCode(202, "Removed");
             }
 
             return StatusCode(500, "Error to remove profile");
