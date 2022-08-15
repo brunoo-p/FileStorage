@@ -27,15 +27,19 @@ export class MapperFileService {
     try {
 
       // return this.mapFile(file);
-      return {
-        id: file.id,
-        profileId: file.profileId,
-        name: new FileName(file.name),
-        description: file.description,
-        keywords: file.keywords,
-        content: file.content,
-        metadata: new FileMetadata(file.metadata)
+      if (file !== null && file.length) {
+
+        return {
+          id: file.id,
+          profileId: file.profileId,
+          name: new FileName(file.name),
+          description: file.description,
+          keywords: file.keywords,
+          content: file.content,
+          metadata: new FileMetadata(file.metadata)
+        }
       }
+      return [];
 
     }catch (err)
     {
@@ -50,17 +54,20 @@ export class MapperFileService {
     try {
 
       // return files.map((file: any) => this.fromObject(file));
-      return files.map((file: any) => (
-        {
-          id: file.id,
-          profileId: file.profileId,
-          name: new FileName(file.name),
-          description: file.description,
-          keywords: file.keywords,
-          content: file.content,
-          metadata: new FileMetadata(file.metadata)
-        }
-      ))
+      if (files !== null && files.length) {
+        return files.map((file: any) => (
+          {
+            id: file.id,
+            profileId: file.profileId,
+            name: new FileName(file.name),
+            description: file.description,
+            keywords: file.keywords,
+            content: file.content,
+            metadata: new FileMetadata(file.metadata)
+          }
+        ))
+      }
+      return [];
 
     }catch (err)
     {

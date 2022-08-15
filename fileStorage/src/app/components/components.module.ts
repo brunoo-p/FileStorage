@@ -14,12 +14,15 @@ import { FormsAuthenticationComponent } from './forms-authentication/forms-authe
 import { SignInComponent } from './forms-authentication/signIn/signIn.component';
 import { ModalComponent } from "./modal/modal.component";
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { HeaderComponent } from './home-page-components/header/header.component';
+
 @NgModule({
   declarations: [
     SignInComponent,
     SignUpComponent,
     FormsAuthenticationComponent,
     UploadComponent,
+    HeaderComponent,
     ModalComponent,
     NavbarComponent,
     CardContainerComponent
@@ -37,6 +40,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     FormsAuthenticationComponent,
     SignInComponent,
     UploadComponent,
+    HeaderComponent,
     ModalComponent,
     NavbarComponent,
     CardContainerComponent

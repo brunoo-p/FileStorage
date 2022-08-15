@@ -14,16 +14,14 @@ export class AuthGuard implements CanActivate {
     private contextAuthService: ContextAuthService,
     private storageManager: StorageManagerService
   ) {
-    this.contextAuthService.userProfile
-      .subscribe((content: any) => this.user = content);
   }
 
   canActivate(): boolean {
 
-    this.contextAuthService.userProfile;
     const token = this.storageManager.getItem('@Fs:user');
+    this.user = this.contextAuthService.userProfile;
 
-    if (this.user !== null || token) {
+    if (this.user || token) {
       return true;
     }
 

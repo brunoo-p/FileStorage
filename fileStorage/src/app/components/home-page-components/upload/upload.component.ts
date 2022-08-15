@@ -1,8 +1,11 @@
-import { FileType } from './types';
-import { UploadFacadeService } from './facade/upload.facade';
-import { FileService } from './../../../services/domain/file/file.service';
+import { FileServiceObservable } from './../../../services/observables/file.service';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+import { Component } from "@angular/core";
+
+import { FileType } from './types';
+
+import { UploadFacadeService } from './facade/upload.facade';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-upload',
@@ -11,14 +14,11 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 })
 export class UploadComponent{
 
-  @Input() set file(currentFile: any){
-    this.setFile(currentFile);
-  }
-  @Output() setCurrentFile = new EventEmitter();
+  file: any;
+  imageShow: any;
+  metadata: { type: string } = { type: '' };
 
-  currentFile: any;
-
-  files: UntypedFormGroup;
+  files!: UntypedFormGroup;
 
   keywords: Set<string> = new Set([]);
   currentKeyword: string = '';
@@ -27,30 +27,50 @@ export class UploadComponent{
 
   constructor(
     private formBuilder: UntypedFormBuilder,
-    private uploadFacadeService: UploadFacadeService
+    private uploadFacadeService: UploadFacadeService,
+    private fileServiceObservable: FileServiceObservable,
+    private _sanitizer: DomSanitizer
   ) {
-
-    this.files = this.formBuilder.group({
-      name: [true ? '' : '', Validators.required],
-      description: [ true ? '' : ''],
-      keywords: [true ? [''] : ['']],
-      content: [true ? null : null, Validators.required],
-      metadata: [true ? '' : '' , Validators.required]
-    });
+    this.mapFileFormGroup();
   }
 
-  setFile(currentFile: any) {
-    this.currentFile = currentFile
+  ngOnInit(): void {
+
+    this.fileServiceObservable.editFile.subscribe((file: any) => {
+      this.file = file;
+      this.metadata = file?.metadata;
+
+      this.imageShow = this._sanitizer
+        .bypassSecurityTrustResourceUrl(`data:${this.file?.metadata.type};base64, ${this.file?.content}`);
+
+      this.mapFileFormGroup(this.file);
+
+      if(file && file.keywords) {
+        for (let word of file.keywords) {
+          this.keywords.add(word);
+        }
+      }
+    });
+
+  }
+
+  mapFileFormGroup(file?: any) {
+    this.files = this.formBuilder.group({
+      name: [this.file ? this.file.name.value : '', Validators.required],
+      description: [ this.file ? this.file.description : ''],
+      keywords: [this.file ? [...this.file.keywords] : ['']],
+      content: [this.file ? file.content : null],
+      metadata: [this.file ? this.file.metadata : {type: '' } , Validators.required]
+    });
   }
 
   createUrlPreview(file: File) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (event: any) => {
-
-      this.setCurrentFile.emit({ file: file, base64: (<FileReader>event.target).result, type: file.type })
-      this.files.controls["metadata"].setValue({ type: file.type })
-
+      this.file = file;
+      this.imageShow = (<FileReader>event.target).result;
+      this.metadata = { type: file.type }
     }
   }
   uploadFile(event: any) {
@@ -64,7 +84,9 @@ export class UploadComponent{
 
   closeModal() {
     this.showModal = false;
-    this.setCurrentFile.emit(null);
+    this.file = null;
+    this.files.reset();
+    this.keywords.clear();
   }
 
   addKeywordFromInput(event: any) {
@@ -83,13 +105,12 @@ export class UploadComponent{
     if (this.files.valid) {
 
       this.files.controls['keywords'].setValue([...this.keywords]);
-      this.files.controls['content'].setValue(this.currentFile);
+      this.files.controls['content'].setValue(this.file);
+      this.files.controls["metadata"].setValue(this.metadata);
 
-      console.log(this.files.value);
-      // await this.uploadFacadeService.instance().save(this.files.value as unknown as FileType);
-      // this.files.reset();
-      // this.keywords.clear();
-      // this.closeModal();
+      await this.uploadFacadeService.instance().saveOrUpdate(this.files.value as unknown as FileType);
+
+      this.closeModal();
     }
   }
 }

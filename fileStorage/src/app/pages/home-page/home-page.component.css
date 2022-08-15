@@ -30,8 +30,9 @@
   overflow-y: auto;
   overflow-x: hidden;
   scroll-behavior: smooth;
-
+  padding: 0px 0px 40px 0px;
 }
+
 .content::-webkit-scrollbar {
   width: 3px;
   background: transparent;
@@ -45,7 +46,7 @@ section {
   box-sizing: border-box;
   border-radius: 10px;
 }
-.commentsSection{
+/* .commentsSection{
   border-radius: 24px;
   position: fixed;
   right: 0;
@@ -63,32 +64,42 @@ section {
   border-radius: 50%;
   border-top: 5px solid var(--secondary-color);
   object-fit: cover;
-}
+} */
 
 .section {
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   padding: 0 10px;
   box-sizing: border-box;
   background: var(--background-light-color);
 }
-/* .section-container {
-  flex-direction: column;
-} */
-/* .section-container {
-  width: inherit;
-  height: inherit;
-  padding: 10px;
-  box-sizing: border-box;
+.cards-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 100px;
 }
-.section-container article {
-  width: 60%;
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: rgb(0 0 0 / 10%) 0px 2px 4px 0px;
-  border: 1px solid rgb(231, 238, 236);
-  margin: 3em auto;
-} */
+.cards-container::-webkit-scrollbar {
+  width: 3px;
+  background: transparent;
+}
+.cards-container::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+}
+.section-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px 40px 10px;
+  box-sizing: border-box;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .section-container {
   width: inherit;
   height: inherit;
@@ -97,10 +108,18 @@ section {
   overflow: hidden;
   display: flex;
 }
-.section:nth-child(4) {
+
+.emptyMessage {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: start;
+  justify-content: center;
+}
+/* .section:nth-child(4) {
   background: transparent;
   height: 20vh;
-}
+} */
 
 
 
