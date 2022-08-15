@@ -3,4 +3,5 @@ export interface IFileService {
   save: (file: FormData) => Promise<any>;
   edit: (documentId: string, file: FormData) => any;
   listAll: (profileId: string) => any;
+  remove: (documentId: string) => Promise<any>,
 }

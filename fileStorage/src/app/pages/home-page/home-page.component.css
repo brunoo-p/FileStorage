@@ -44,25 +44,6 @@ section {
   box-sizing: border-box;
   border-radius: 10px;
 }
-/* .commentsSection{
-  border-radius: 24px;
-  position: fixed;
-  right: 0;
-  margin-right: 20px;
-  top: 75vh;
-  background: var(--background-light-color/10%);
-  backdrop-filter: blur(5px);
-  box-shadow: rgb(0 0 0 / 10%) 0px 2px 4px 0px;
-  border: 1px solid rgb(231, 238, 236, .2);
-  text-align: center;
-}
-.commentsSection .commentsSection-container img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border-top: 5px solid var(--secondary-color);
-  object-fit: cover;
-} */
 
 .section {
   width: 100%;

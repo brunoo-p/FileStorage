@@ -19,10 +19,10 @@ public class Login : Base
     }
 }
 public class Email {
-    public string Value { get; set; }
+    public string? Value { get; set; }
 }
 public class Password
 {
-    public string Value { get; set; }
+    public string? Value { get; set; }
 }
 

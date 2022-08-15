@@ -25,7 +25,20 @@ namespace Domain.Repositories
 
         public bool Delete( string documentId )
         {
-            throw new NotImplementedException();
+            try
+            {
+                _collection
+                    .UpdateOne(Builders<Document>
+                    .Filter.Eq("Id", ObjectId.Parse(documentId)), Builders<Document>
+                    .Update.Set("IsDeleted", true));
+
+                return true;
+
+            }
+            catch ( Exception ex )
+            {
+                throw new Exception($"Error: {ex}");
+            }
         }
 
         public Document Save( string profileId,  DocumentDTO document )
