@@ -9,11 +9,11 @@ namespace Infrastructure.Entities.DTO
     {
         [BsonRequired]
         [Required]
-        public string ProfileId { get; set; }
+        public string? ProfileId { get; set; }
 
         [BsonRequired]
         [Required]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [BsonRequired]
         public string? Description { get; set; }
@@ -26,7 +26,7 @@ namespace Infrastructure.Entities.DTO
 
         [BsonRequired]
         [Required]
-        public string Metadata { get; set; }
+        public string? Metadata { get; set; }
 
         [NotMapped]
         public IFormFile? ImagePath { get; set; }

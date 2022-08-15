@@ -30,7 +30,7 @@ namespace Infrastructure.Entities
         public string Metadata { get; set; }
 
         [NotMapped]
-        public IFormFile ImagePath { get; set; }
+        public IFormFile? ImagePath { get; set; }
 
         [BsonDefaultValue(false)]
         public bool IsDeleted { get; set; } = false;
@@ -61,12 +61,12 @@ namespace Infrastructure.Entities
 
     public class Name
     {
-        public string Value { get; set; }
+        public string? Value { get; set; }
     }
     public class Metadata {
 
         [Required]
-        public string Type { get; set; }
+        public string? Type { get; set; }
     }
 
 }

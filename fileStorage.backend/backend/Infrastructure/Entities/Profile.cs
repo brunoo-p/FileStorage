@@ -51,11 +51,11 @@ namespace Infrastructure.Entities
     public class Contact {
         [BsonRequired]
         [Required]
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
     }
     public class Cpf {
         [BsonRequired]
         [Required]
-        public string Value { get; set; }
+        public string? Value { get; set; }
     }
 }
