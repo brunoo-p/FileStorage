@@ -23,7 +23,7 @@ export class FileRequest {
       data.append("keywords", keyword);
     })
     data.append("content", String(''));
-    data.append("imagePath", this.content.file);
+    data.append("imagePath", this.content);
     data.append("metadata", this.metadata.type);
 
     return data;

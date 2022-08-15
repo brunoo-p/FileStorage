@@ -1,0 +1,106 @@
+.container {
+  width: 100%;
+  height: 100%;
+  max-height: 345px;
+  max-width: 300px;
+  border-radius: 14px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 2px 4px 0px;
+  border: 1px solid rgb(231, 238, 236);
+  margin: 2em auto;
+  box-sizing: border-box;;
+  overflow: hidden;
+  transition: .4s;
+}
+img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+.container h2 {
+  padding: 0 12px;
+}
+.container .description {
+  height: 55px;
+  transform: translateY(-10px);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  padding: 0 12px;
+}
+.container .keywords {
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  padding-bottom: 10px;
+}
+.container .keywords label {
+  color: var(--primary-color);
+  margin: 0 .5em;
+}
+.container:hover {
+  filter: grayscale(50%);
+}
+.container:hover .hiddenContainer-buttons button {
+  transform: translateY(-110px);
+}
+.container:hover .arrowIcon {
+    opacity: 0;
+}
+.hiddenContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 0px;
+}
+.hiddenContainer .hiddenContainer-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.hiddenContainer .hiddenContainer-buttons button:first-child {
+  transition: .2s ease-in;
+}
+.hiddenContainer .hiddenContainer-buttons button:nth-child(2) {
+  transition: .29s ease-in;
+}
+.hiddenContainer .hiddenContainer-buttons button:nth-child(3) {
+  transition: .36s ease-in;
+}
+.hiddenContainer .hiddenContainer-buttons button {
+  box-shadow: rgb(0 0 0 / 42.73%) 0px 2px 6px 1px;
+  transition: .1s ease-in;
+  border: 1px solid transparent;
+  background: white;
+  transform: translateY(80px)
+}
+.hiddenContainer .hiddenContainer-buttons button:first-child {
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+.hiddenContainer .hiddenContainer-buttons button:nth-child(2) {
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+}
+.hiddenContainer .hiddenContainer-buttons button:nth-child(3) {
+  border: 1px solid #ee5253;
+  color: #ee5253;
+}
+
+.arrowIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: 2s moveArrowIcon infinite forwards;
+  transition: .3s;
+  opacity: .5;
+}
+@keyframes moveArrowIcon {
+  0% { transform: translateY(2px) }
+  65% { transform: translateY(0px) }
+  100% { transform: translateY(2px) }
+}
+
+

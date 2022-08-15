@@ -27,7 +27,7 @@ export class FileService {
 
   }
   private async saveFile(api: HttpClient, file: FormData): Promise<any> {
-    const url = `${this.baseUrl}/document/${file.get("profileId")}`
+    const url = `${this.baseUrl}/document/${file.get("profileId")}`;
     const callApi = () => api
       .post<FormData>(
         url,
@@ -39,7 +39,19 @@ export class FileService {
 
   }
 
-  private async listAll(api: HttpClient, profileId: string): Promise<any> {
+  private async editFile(api: HttpClient, documentId: string, update: FormData): Promise<any> {
+    const url = `${this.baseUrl}/document/${documentId}`;
+    const callApi = () => api
+      .put<FormData>(
+        url,
+        update,
+        { observe: 'response' }
+      );
+      const response = await this.apiCallerService.caller(callApi, this.mapperFileService.fromObject, HttpStatusCode.OK);
+      return response;
+  }
+
+  private async listAll(api: HttpClient, profileId: string) {
     const url = `${this.baseUrl}/document/${profileId}`;
     const callApi = () => api
       .get<any>(
@@ -47,12 +59,15 @@ export class FileService {
         { observe: 'response' }
       )
 
-      return await this.apiCallerService.caller(callApi, this.mapperFileService.fromArray, HttpStatusCode.OK);
+      const response = await this.apiCallerService.caller(callApi, this.mapperFileService.fromArray, HttpStatusCode.OK);
+      console.log(response);
+      return response;
   };
 
 
   instance = (): IFileService => ({
     save: (file: FormData) => this.saveFile(this.api, file),
+    edit: (documentId: string, update: FormData) => this.editFile(this.api, documentId, update),
     listAll: (profileId: string) => this.listAll(this.api, profileId)
   })
 }

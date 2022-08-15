@@ -29,7 +29,7 @@ namespace Infrastructure.Entities.DTO
         public string Metadata { get; set; }
 
         [NotMapped]
-        public IFormFile ImagePath { get; set; }
+        public IFormFile? ImagePath { get; set; }
 
         [BsonDefaultValue(false)]
         public bool IsDeleted { get; set; } = false;

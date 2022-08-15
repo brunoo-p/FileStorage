@@ -3,13 +3,123 @@
   width: 100%;
   height: 100vh;
   background: var(--background-dark-color);
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  justify-content: center;
+}
+.parallax {
+  width: inherit;
+  max-width: calc(var(--max-width) + 100px);
+  height: inherit;
+  background: url("https://i0.wp.com/digitaldoc.com.br/wp-content/uploads/2021/04/Digitaldoc.png?w=1920&ssl=1");
+  background-attachment: fixed;
+  perspective: 9px;
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
 }
 .content {
   display: flex;
   width: 100%;
+  max-width: var(--max-width);
   height: 100%;
-  justify-content: center;
-  align-items: start;
-  background: var(--background-dark-color);
+  flex-direction: column;
+  box-sizing: border-box;
+  font-weight: 700;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  padding: 0px 0px 40px 0px;
 }
+
+.content::-webkit-scrollbar {
+  width: 3px;
+  background: transparent;
+}
+.content::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+section {
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+/* .commentsSection{
+  border-radius: 24px;
+  position: fixed;
+  right: 0;
+  margin-right: 20px;
+  top: 75vh;
+  background: var(--background-light-color/10%);
+  backdrop-filter: blur(5px);
+  box-shadow: rgb(0 0 0 / 10%) 0px 2px 4px 0px;
+  border: 1px solid rgb(231, 238, 236, .2);
+  text-align: center;
+}
+.commentsSection .commentsSection-container img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border-top: 5px solid var(--secondary-color);
+  object-fit: cover;
+} */
+
+.section {
+  width: 100%;
+  height: 100vh;
+  padding: 0 10px;
+  box-sizing: border-box;
+  background: var(--background-light-color);
+}
+.cards-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 100px;
+}
+.cards-container::-webkit-scrollbar {
+  width: 3px;
+  background: transparent;
+}
+.cards-container::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+}
+.section-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px 40px 10px;
+  box-sizing: border-box;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.section-container {
+  width: inherit;
+  height: inherit;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+}
+
+.emptyMessage {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: start;
+  justify-content: center;
+}
+/* .section:nth-child(4) {
+  background: transparent;
+  height: 20vh;
+} */
+
+
 

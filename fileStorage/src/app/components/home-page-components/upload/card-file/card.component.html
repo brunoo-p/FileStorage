@@ -1,0 +1,43 @@
+<div class="container">
+  <img [src]="imageShow" [alt]="file.name.value" *ngIf="file?.metadata?.type.includes('image')">
+
+  <!-- <pdf-viewer class="pdfPreview" [src]="pdf"
+    #pdfViewer
+    [render-text]="true"
+    [original-size]="false"
+    style="width: 95%; height: 100%"
+    *ngIf="file?.metadata?.type.includes('pdf')"
+  ></pdf-viewer> -->
+  <object *ngIf="file?.metadata?.type.includes('pdf')" data="pdf" type="application/pdf"></object>
+
+  <h2> {{ file.name.value }} </h2>
+
+  <div class="description">
+    <label for="subtitle">
+      {{ file.description }}
+    </label>
+  </div>
+
+  <div class="keywords">
+    <label for="keywords" *ngFor="let keyword of file.keywords; trackBy: trackByKeywordList">
+      #{{ keyword }}
+    </label>
+  </div>
+  <div class="arrowIcon">
+    <mat-icon>keyboard_arrow_up</mat-icon>
+  </div>
+  <div class="hiddenContainer">
+    <div class="hiddenContainer-buttons">
+      <button mat-mini-fab aria-label="edit" (click)="editFile(file)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-mini-fab aria-label="download">
+        <mat-icon>cloud_download</mat-icon>
+      </button>
+      <button mat-mini-fab aria-label="delete">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+
+</div>

@@ -4,6 +4,9 @@ body {
   font-family: 'Roboto', 'Montserrat', sans-serif;
   box-sizing: border-box;
 }
+* {
+  box-sizing: border-box;
+}
 
 :root {
   --background-dark-color: #252525;
@@ -11,8 +14,7 @@ body {
   --primary-color: #1e73be;
   --secondary-color: rgb(2, 215, 131);
   --tertiary-color: #1C1C1C;
-  --max-width: 1440px;
+  --max-width: 1640px;
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

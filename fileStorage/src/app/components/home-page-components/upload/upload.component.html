@@ -1,22 +1,20 @@
 <div class="container">
   <aside class="content">
-      <label for="file" class="inputContainer">
-        <span> Pick an image </span>
-      </label>
-      <input type="file" name="file" id="file" (change)="uploadFile($event)">
 
-      <app-modal *ngIf="showModal">
+      <app-header class="container-header" (setUploadFile)="uploadFile($event)"></app-header>
+
+      <app-modal *ngIf="file">
         <div class="content-modal" [ngStyle]="{ 'grid-template-columns': toggleBtn.checked ? '50% 50%' : '0% 100%' }">
 
           <section class="previewImage" [ngStyle]="{'width': toggleBtn.checked ? '100%' : '0%' }">
 
-            <img [src]="currentFile.base64" class="image" alt="sorry, we can't show the preview" *ngIf="currentFile?.type?.includes('image')">
+            <img [src]="imageShow" class="image" alt="sorry, we can't show the preview" *ngIf="metadata.type.includes('image')">
 
-            <pdf-viewer class="pdfPreview" [src]="currentFile.base64"
+            <pdf-viewer class="pdfPreview" [src]="imageShow"
               [render-text]="true"
               [original-size]="false"
               style="width: 95%; height: 100%"
-              *ngIf="currentFile?.type?.includes('pdf')"
+              *ngIf="metadata.type.includes('pdf')"
             ></pdf-viewer>
 
             <label for="file" class="iconEdit" [ngStyle]="{ opacity: toggleBtn.checked ? '1' : '0'}"> <img src="/assets/icons/edit.png" alt="edit"> </label>
@@ -43,12 +41,11 @@
 
               <div class="nameInput">
                 <label for="name"> File Name </label>
-                <!-- <input type="text" formControlName="name" name="name" id="name" placeholder="Ex: My file"> -->
                 <app-input-text [formGroup]="files" controlName="name" placeholder="Ex: My file"></app-input-text>
               </div>
               <div class="descriptionInput">
                 <label for="name"> Description </label>
-                <textarea formControlName="description" name="description" id="description" rows="5" placeholder="Ex: This file contain details about my travel." ></textarea>
+                <textarea formControlName="description"  value="description" name="description" id="description" rows="5" placeholder="Ex: This file contain details about my travel." ></textarea>
               </div>
 
               <label>Type a few keywords</label>

@@ -1,20 +1,19 @@
+import { Observable, lastValueFrom } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { UserProfile } from './../../domain/common/userProfile';
 import { Injectable } from "@angular/core";
+import { Profile } from '../../domain/profile/profile';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContextAuthService {
-  private user$ = new BehaviorSubject<any>(null);
+  private _user!: Profile;
 
-  constructor() {
+  public get userProfile(): Profile {
+    return this._user;
   }
-
-  get userProfile(): any | null {
-    return this.user$.asObservable();
-  }
-  set userProfile(value: any | null) {
-    this.user$.next(value);
+  public set userProfile(value: Profile) {
+    this._user = value;
   }
 }

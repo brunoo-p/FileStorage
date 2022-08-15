@@ -1,4 +1,5 @@
-import { ContextAuthService } from './../../../../services/api/context/contextAuth.service';
+import { StorageManagerService } from './../../../../services/domain/utils/storage/storageManager.service';
+import { FileServiceObservable } from './../../../../services/observables/file.service';
 import { Injectable } from '@angular/core';
 
 import { FileService } from '../../../../services/domain/file/file.service';
@@ -16,15 +17,16 @@ export class UploadFacadeService {
 
   constructor(
     private fileService: FileService,
-    private contextAuthService: ContextAuthService
+    private fileServiceObservable: FileServiceObservable,
+    private storageManagerService :StorageManagerService
   ) {}
 
-  private async save(file: FileType): Promise<void> {
+  private async saveOrUpdate(file: FileType): Promise<void> {
     const { name, description, keywords, metadata, content} = file;
 
-    const profileId = '62f5c08aea7ab48433fd5685';
+    const { id } = this.storageManagerService.getItem('@Fs:user');
     const newFile = new FileRequest(
-      profileId,
+      id,
       new FileName(name),
       description,
       keywords,
@@ -33,29 +35,28 @@ export class UploadFacadeService {
     )
 
     const data: FormData = newFile.mapFormData();
-    const response = await this.fileService.instance().save(data);
+    if(content.id){
+      return await this.fileService.instance().edit(content.id, data);
+    }else {
+      return await this.fileService.instance().save(data);
+    }
   }
 
   private async listAll(): Promise<any> {
-    const profileId = '62f5c08aea7ab48433fd5685';
-    const response = await this.fileService.instance().listAll(profileId);
-    console.log(response);
-  }
-  private edit(id: string, update: Omit<FileType, 'file'>): any {
-    console.log(id, update);
 
+    const { id } = this.storageManagerService.getItem('@Fs:user');
+    const response = await this.fileService.instance().listAll(id);
+    this.fileServiceObservable.fileList = response;
   }
 
 
   instance = (): IFileFacade => ({
-    save: (file: FileType) => this.save(file),
+    saveOrUpdate: (file: FileType) => this.saveOrUpdate(file),
     listAll: () => this.listAll(),
-    edit: (id: string, update: Omit<FileType, 'file'>) => this.edit(id, update)
   })
 }
 
 interface IFileFacade {
-  save: (File: FileType) => Promise<void>,
+  saveOrUpdate: (File: FileType) => Promise<void>,
   listAll: () => Promise<any>,
-  edit: (id: string, update: Omit<FileType, 'file'>) => any
 }

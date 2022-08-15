@@ -23,7 +23,7 @@ export class FormsAuthenticationFacade {
   constructor(
     private loginService: LoginService,
     private storageManager: StorageManagerService,
-    private contextAuthService: ContextAuthService
+    private contextAuthService: ContextAuthService,
   ) {}
 
   private setKeepConnected(data: any) {
@@ -42,7 +42,7 @@ export class FormsAuthenticationFacade {
     this.contextAuthService.userProfile = response;
 
     if(response.isActive && keepConnected) {
-      this.setKeepConnected(login.email);
+      this.setKeepConnected(this.contextAuthService.userProfile);
     }
   }
 

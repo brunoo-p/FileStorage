@@ -37,10 +37,10 @@ namespace API.Controllers
 
         [SwaggerOperation(Summary = "Update Document", Description = "Select document by id and return updated")]
         [ProducesResponseType(typeof(Document), 200)]
-        [HttpPut]
-        public ActionResult Update( string id, [FromForm] DocumentDTO update )
+        [HttpPut("{documentId}")]
+        public ActionResult Update( string documentId, [FromForm] DocumentDTO update )
         {
-            var response = _repository.Update(id, update);
+            var response = _repository.Update(documentId, update);
             return Ok(response);
         }
 

@@ -1,7 +1,54 @@
 <div class="container">
-  <div class="content">
+  <div class="parallax">
+    <div class="content">
 
-    <app-upload></app-upload>
+      <app-navbar></app-navbar>
 
+      <section class="section" id="first-section">
+          <div class="section-container">
+
+            <app-upload></app-upload>
+
+            <div class="cards-container" *ngIf="files.length > 0; else emptyListFiles">
+
+              <ng-container class="cards-container" *ngFor="let file of files; trackByFile">
+
+                <div class="card" style="margin: 0.5em 1em">
+                  <app-card-container
+                    (setEditFile)="setCurrentFile($event)"
+                    [file]="file"
+                  ></app-card-container>
+                </div>
+
+              </ng-container>
+            </div>
+
+            <ng-template #emptyListFiles>
+              <div class="emptyMessage">
+                <h1> Files list is empty</h1>
+              </div>
+            </ng-template>
+
+
+          </div>
+      </section>
+
+      <!-- <section class="commentsSection">
+        <div class="commentsSection-container">
+          <article>
+            <img src="https://static.vecteezy.com/system/resources/previews/000/420/855/original/avatar-icon-vector-illustration.jpg" alt="avatar">
+            <h2> Bruno Paulino </h2>
+            <div>
+              <label for="subtitle">
+                Figma connects everyone in the design process
+                <br>
+                so teams can deliver better products, faster.
+              </label>
+            </div>
+          </article>
+        </div>
+      </section> -->
+
+    </div>
   </div>
 </div>

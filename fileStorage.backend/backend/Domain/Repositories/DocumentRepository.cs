@@ -2,6 +2,7 @@
 using Infrastructure.Entities;
 using Infrastructure.Entities.DTO;
 using Infrastructure.Interface;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Domain.Repositories
@@ -53,9 +54,23 @@ namespace Domain.Repositories
             }
         }
 
-        public Document Update( string documetnId, DocumentDTO update )
+        public Document Update( string documentId, DocumentDTO update )
         {
-            throw new NotImplementedException();
+            try
+            {
+                _collection.UpdateOne(Builders<Document>.Filter.Eq("Id", ObjectId.Parse(documentId)), Builders<Document>.Update
+                   .Set("Name", update.Name)
+                   .Set("Description", update.Description)
+                   .Set("Keywords", update.Keywords)
+               );
+
+                return GetById(documentId);
+
+            }
+            catch ( Exception ex )
+            {
+                throw new Exception($"Error: {ex}");
+            }
         }
 
         private Document GetById( string id )
