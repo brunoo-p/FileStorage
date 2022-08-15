@@ -21,11 +21,18 @@
 }
 .section-slogan {
   width: 100%;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  display: none;
 }
 .section-form {
   width: 100%;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (min-width: 1000px) {
+  .section-slogan {
+    display: flex;
+  }
 }
