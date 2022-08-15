@@ -38,10 +38,10 @@
   display: flex;
   width: 100%;
   max-width: 900px;
-  height: 100%;
-  max-height: 600px;
+  height: auto;
+  max-height: 800px;
   grid-template-columns: 0 100%;
-  background: whitesmoke;
+  background: var(--background-light-color);
   box-sizing: border-box;
   border-radius: 10px;
   justify-content: center;

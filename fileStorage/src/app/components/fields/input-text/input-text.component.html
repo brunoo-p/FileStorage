@@ -1,4 +1,4 @@
-<div [formGroup]="formGroup">
+<div [formGroup]="formGroup" class="input-container">
   <input type="text" [formControlName]="controlName" [placeholder]="placeholder" [required]="required">
   <div *ngIf="(formControl.dirty || formControl.touched) && formControl.errors" class="alert">
 

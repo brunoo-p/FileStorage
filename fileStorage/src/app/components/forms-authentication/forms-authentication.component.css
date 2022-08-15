@@ -11,22 +11,20 @@ input {
 .container {
   display: flex;
   width: 100%;
-  height: 100vh;
-  background: var(--background-dark-color);
+  height: 100%;
+  background: inherit;
   overflow: hidden;
   box-sizing: border-box;
-  background: #f8f8ff;
 }
 .content {
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: inherit;
+  height: inherit;
   align-items: center;
   justify-content: center;
-  background: var(--background-dark-color);
-  animation: .6s showContent ease-out forwards;
+  background: inherit;
+  /* animation: .6s showContent ease-out forwards; */
   font-weight: 700;
-  margin: auto auto;
 }
 @keyframes showContent {
   from { width: 20%; height: 15% }
@@ -34,15 +32,25 @@ input {
 }
 .forms {
   display: flex;
-  width: 30%;
+  width: 70%;
   height: auto;
+  box-shadow: rgb(0 0 0 / 20%) 3px 2px 12px 3px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   border-radius: 10px;
   background: var(--background-light-color);
   padding: 32px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: .2s ease-in;
+}
+.forms::-webkit-scrollbar {
+  width: 3px;
+  background: transparent;
+}
+.forms::-webkit-scrollbar-thumb {
+  background: var(--tertiary-color);
 }
 .contentForms {
   display: flex;
@@ -50,14 +58,15 @@ input {
   height: 100%;
   color: var(--primary-color);
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   padding: 10px;
-  background: transparent;
+  transition: 3s ease-in;
 }
-.contentForms aside {
+.container-form {
   display: flex;
   width: 100%;
-  justify-content: flex-start;
+  height: 100%;
+  justify-content: center;
   font-size: 18px;
   font-weight: 700;
 }
@@ -81,7 +90,7 @@ form {
   display: flex;
   width: 100%;
   height: 100%;
-  padding: 20px 0;
+  padding: 20px;
   flex-direction: column;
 }
 form div {
@@ -127,17 +136,20 @@ form label::after {
   transform: translateY(25px);
 }
 .submit button {
-  background: none;
+  background: var(--primary-color);
   outline: none;
-  border: 1px solid var(--primary-color);
+  border: 3px solid var(--primary-color);
   border-radius: 10px;
   padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFF;
   cursor: pointer;
   transition: .3s ease-in;
 }
 .submit button:hover {
-  background: var(--tertiary-color);
   color: var(--primary-color);
+  background: linear-gradient(85deg, #FFFF 73.97%, var(--secondary-color));
 }
 
 
