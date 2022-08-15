@@ -10,7 +10,7 @@ export class HomePageComponent implements OnInit{
 
   currentFile: any;
   mockFiles: any;
-  files!: any;
+  files: any = [];
 
   constructor(
     private uploadFacadeService: UploadFacadeService,

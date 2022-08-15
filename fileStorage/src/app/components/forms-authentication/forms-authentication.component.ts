@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class FormsAuthenticationComponent {
 
   private showForm: KeyForm = FormType.SignIn;
-  showLogin = this.showForm === FormType.SignIn;
+  showLogin = this.showForm !== FormType.SignIn;
 
   constructor(
     private formsFacade: FormsAuthenticationFacade,

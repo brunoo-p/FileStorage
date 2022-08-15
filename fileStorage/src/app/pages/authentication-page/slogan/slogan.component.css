@@ -1,0 +1,99 @@
+.content-section-slogan {
+  width: 70%;
+  text-align: start;
+  margin-top: 120px;
+}
+
+.content-section-slogan .title h1 {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 38px;
+  color: #333333;
+  margin-bottom: 50px;
+}
+.content-section-slogan .title:before {
+  display: flex;
+  content: '';
+  width: 60px;
+  height: 10px;
+  background: linear-gradient(60deg, var(--primary-color)73.3%, var(--secondary-color));
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+.name {
+  display: flex;
+  margin-bottom: 40px;
+  font-weight: 500;
+  font-size: 22px;
+}
+.name strong {
+  margin-right: 5px;
+}
+.content-section-slogan .description {
+  width: 70%;
+  text-align: start;
+}
+.content-section-slogan .description span {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-shadow);
+  line-height: 30px;
+}
+.content-section-slogan .description strong {
+  background: var(--tertiary-color);
+  font-weight: 500;
+  padding: 3px 5px;
+  color: #FFFFFF;
+}
+.content-section-slogan .button {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+.icon .box {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  border: 2px solid var(--primary-color);
+  position: fixed;
+  transition: .2s ease-in;
+  transform: translate(-41px, -3px) rotate(45deg) scale(.8);
+  opacity: 0;
+}
+.icon .arrow {
+  transition: .2s ease-in;
+  color: var(--primary-color);
+  transform: translateX(-35px) scale(.8);
+  opacity: 0;
+}
+.content-section-slogan .button button {
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  background: var(--primary-color);
+  padding: 10px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  color:#FFFF;
+  cursor: pointer;
+  z-index: 2;
+  transition: .12s ease-in;
+}
+.content-section-slogan .button button:hover {
+  background: transparent;
+  width: 170px;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+.button:hover .box{
+  opacity: 1;
+  transform: translate(0px, -4px) rotate(45deg) scale(1.2);
+}
+.button:hover .arrow{
+  opacity: 1;
+  transform: translateX(5px)scale(1.2);
+}

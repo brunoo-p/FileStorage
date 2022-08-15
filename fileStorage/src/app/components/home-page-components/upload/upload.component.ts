@@ -23,7 +23,7 @@ export class UploadComponent{
   keywords: Set<string> = new Set([]);
   currentKeyword: string = '';
 
-  showModal: boolean = false;
+  showModal: boolean = true;
 
   constructor(
     private formBuilder: UntypedFormBuilder,
